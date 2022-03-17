@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    margin-top:10px;
+    width: 100%;
+    height: 100px;
+    color: cadetblue;
+    /* background-color: red; */
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav_title {
+    width: 30%;
+    margin-left: -420px;
+    margin-top: 40px;
+}
+
+.login_button {
+    border-radius: 8px;
+    border: none;
+    padding: 10px;
+    margin-right: 250px;
+    margin-top: 40px; 
+    color: white;
+    background-color: cadetblue;
+}
+
+.logo {
+    width: 5%;
+    height: 50%;
+    margin-top: 40px;
+    margin-left: 200px;
+    position:relative;
+}
