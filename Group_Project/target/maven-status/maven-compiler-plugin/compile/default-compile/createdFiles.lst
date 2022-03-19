@@ -1,3 +1,4 @@
+com\hotel\project\Model\CustomerAuthenticationRequest.class
 com\hotel\project\validation\EmailValidator.class
 com\hotel\project\repository\BookingRepository.class
 com\hotel\project\service\CustomerService.class
@@ -8,7 +9,6 @@ com\hotel\project\controller\CustomerController.class
 com\hotel\project\Model\HotelEmployee.class
 com\hotel\project\repository\RoleRepository.class
 com\hotel\project\controller\HotelController.class
-com\hotel\project\Model\AuthenticationRequest.class
 com\hotel\project\service\HotelService.class
 com\hotel\project\validation\FieldMatch$List.class
 com\hotel\project\Model\BookingDetails.class
