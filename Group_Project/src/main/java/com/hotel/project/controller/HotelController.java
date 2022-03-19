@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hotel.project.Model.Hotel;
 import com.hotel.project.repository.HotelRepository;
-import com.hotel.project.service.HotelServiceImpl;
+import com.hotel.project.service.HotelService;
 
 
 @RestController
@@ -28,10 +28,10 @@ public class HotelController {
 	public HotelRepository hotelrepository;
 
 	
-	public HotelServiceImpl hotelservice;
+	public HotelService hotelservice;
 	
 	@Autowired
-	public HotelController(HotelServiceImpl hotelservice){
+	public HotelController(HotelService hotelservice){
 	       this.hotelservice = hotelservice;
 	    }
 	
