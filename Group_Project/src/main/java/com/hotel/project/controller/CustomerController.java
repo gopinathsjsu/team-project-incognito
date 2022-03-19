@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotel.project.Model.BookingDetails;
+import com.hotel.project.Model.Customer;
 import com.hotel.project.repository.HotelRepository;
-import com.hotel.project.service.HotelService;
+import com.hotel.project.service.HotelServiceImpl;
 
 @RestController
 @RequestMapping("/hotel-booking")
@@ -26,13 +27,23 @@ public class CustomerController {
 	public HotelRepository hotelrepository;
 	
 	
-	public HotelService hotelservice;
+	public HotelServiceImpl hotelservice;
 	
 	@Autowired
-	public CustomerController(HotelService hotelservice){
+	public CustomerController(HotelServiceImpl hotelservice){
 	       this.hotelservice = hotelservice;
 	       }
-	  
+	 
+	@PostMapping("/registerCustomer")
+	public String registerCustomer(@RequestBody Customer customer) {
+		
+		
+		
+		
+		return "registered";
+		
+	}
+	
 	@PostMapping("/createBooking")
 	public ResponseEntity<BookingDetails> createBooking(@RequestBody BookingDetails customer){
 		
@@ -47,8 +58,8 @@ public class CustomerController {
 		return hotelservice.getAllBookingDetails();				
 	}
 	
-	@DeleteMapping("/cancelBooking")
-	public String cancelBooking(@RequestParam int reservationId){
+	@PostMapping("/cancelBooking")
+	public String cancelBooking(@RequestParam (value = "reservationId") long reservationId){
 		
 		 hotelservice.deleteBookingDetails(reservationId);	
 		 return "booking cancelled";
