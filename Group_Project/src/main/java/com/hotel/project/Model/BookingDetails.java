@@ -2,8 +2,10 @@ package com.hotel.project.Model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -30,18 +32,21 @@ public class BookingDetails  implements Serializable{
 	 * fromDate; this.toDate = toDate; }
 	 */
 	@Id
-	private String reservationID;
-	
+	private Long reservationID;
 	
 	private String customerName;
 	private String emailID;
 	private String phoneNumber;
 	private String roomType;
+	private int numbder_of_persons;
+	private int numbder_of_children;
+	private Date fromDate;
+	private Date toDate;
 	
-	public String getReservationID() {
+	public long getReservationID() {
 		return reservationID;
 	}
-	public void setReservationID(String reservationID) {
+	public void setReservationID(long reservationID) {
 		this.reservationID = reservationID;
 	}
 	
@@ -81,8 +86,29 @@ public class BookingDetails  implements Serializable{
 	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}
-	private Date fromDate;
-	private Date toDate;
-		
+	/**
+	 * @return the numbder_of_persons
+	 */
+	public int getNumbder_of_persons() {
+		return numbder_of_persons;
+	}
+	/**
+	 * @param numbder_of_persons the numbder_of_persons to set
+	 */
+	public void setNumbder_of_persons(int numbder_of_persons) {
+		this.numbder_of_persons = numbder_of_persons;
+	}
+	/**
+	 * @return the numbder_of_children
+	 */
+	public int getNumbder_of_children() {
+		return numbder_of_children;
+	}
+	/**
+	 * @param numbder_of_children the numbder_of_children to set
+	 */
+	public void setNumbder_of_children(int numbder_of_children) {
+		this.numbder_of_children = numbder_of_children;
+	}
 
 	}
