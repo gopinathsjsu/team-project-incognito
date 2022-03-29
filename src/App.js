@@ -6,6 +6,7 @@ function App() {
     <Router>
       <Switch>
         <BookingRoutes path="/" exact component={BookingSteps} />
+        <Route path="/confirmation"></Route>
       </Switch>
     </Router>
   );
