@@ -1,14 +1,33 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import BookingRoutes from './routes/booking-routes.js';
+import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Header, Footer, Login, SearchPage, Home, Signup} from './component';
+import SignInOutContainer from './containers/SignInOutContainer';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <BookingRoutes path="/" exact component={BookingSteps} />
-        <Route path="/confirmation"></Route>
-      </Switch>
-    </Router>
+    <div className="app">
+        <Router>
+        <Header />
+        <Switch>
+          <Route path="/search">
+            <SearchPage />
+          </Route>
+          <Route path="/login">
+            <SignInOutContainer />
+          </Route>
+          <Route path="/signin">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+        <Footer />
+      </ Router>
+    </div>
   );
 }
 
