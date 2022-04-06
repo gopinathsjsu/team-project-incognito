@@ -10,9 +10,11 @@ com\hotel\project\Model\HotelEmployee.class
 com\hotel\project\repository\RoleRepository.class
 com\hotel\project\controller\HotelController.class
 com\hotel\project\service\HotelService.class
+com\hotel\project\Model\Amenities.class
 com\hotel\project\validation\FieldMatch$List.class
 com\hotel\project\Model\BookingDetails.class
 com\hotel\project\validation\FieldMatchValidator.class
+com\hotel\project\validation\DateRangeValidator.class
 com\hotel\project\Model\RoomRates.class
 com\hotel\project\Model\Customer.class
 com\hotel\project\repository\CustomerRepository.class

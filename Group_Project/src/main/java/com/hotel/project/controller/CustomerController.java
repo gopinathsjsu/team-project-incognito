@@ -2,6 +2,8 @@ package com.hotel.project.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,44 +27,39 @@ public class CustomerController {
 
 	@Autowired
 	public HotelRepository hotelrepository;
-	
-	
+
 	public HotelServiceImpl hotelservice;
-	
+
 	@Autowired
-	public CustomerController(HotelServiceImpl hotelservice){
-	       this.hotelservice = hotelservice;
-	       }
-	 
+	public CustomerController(HotelServiceImpl hotelservice) {
+		this.hotelservice = hotelservice;
+	}
+
 	@PostMapping("/registerCustomer")
 	public String registerCustomer(@RequestBody Customer customer) {
-		
-		
-		
-		
+
 		return "registered";
-		
 	}
-	
+
 	@PostMapping("/createBooking")
-	public ResponseEntity<BookingDetails> createBooking(@RequestBody BookingDetails customer){
-		
+	public ResponseEntity<BookingDetails> createBooking(@Valid @RequestBody BookingDetails customer) {
+
 		hotelservice.createBooking(customer);
-		
+
 		return new ResponseEntity<BookingDetails>(HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping("/getBooking")
-	public List<BookingDetails> getBooking(){
-		
-		return hotelservice.getAllBookingDetails();				
+	public List<BookingDetails> getBooking() {
+
+		return hotelservice.getAllBookingDetails();
 	}
-	
+
 	@PostMapping("/cancelBooking")
-	public String cancelBooking(@RequestParam (value = "reservationId") long reservationId){
-		
-		 hotelservice.deleteBookingDetails(reservationId);	
-		 return "booking cancelled";
+	public String cancelBooking(@RequestParam(value = "reservationId") long reservationId) {
+
+		hotelservice.deleteBookingDetails(reservationId);
+		return "booking cancelled";
 	}
 
 }

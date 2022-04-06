@@ -11,18 +11,20 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotel.project.Model.CustomerAuthenticationRequest;
 import com.hotel.project.Model.Customer;
+import com.hotel.project.Model.CustomerAuthenticationRequest;
 import com.hotel.project.repository.CustomerRepository;
 import com.hotel.project.security.JwtTokenGenerator;
 import com.hotel.project.service.CustomerServiceImpl;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 40000)
 @RequestMapping("/api/auth")
 public class AuthenticationController {
 
@@ -55,6 +57,7 @@ public class AuthenticationController {
 	}
 
 	@SuppressWarnings("rawtypes")
+	//@CrossOrigin(origins = "http://192.168.137.171:3000")
 	@PostMapping("/register")
 	public ResponseEntity register(@RequestBody Customer customer) {
 		Customer customerexists = customerService.findUserByEmail(customer.getEmail());

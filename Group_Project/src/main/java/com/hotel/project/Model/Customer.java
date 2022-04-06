@@ -19,8 +19,9 @@ import lombok.NoArgsConstructor;
 @Document(collection = "CustomerDetails")
 public class Customer {
 
-	@Id
-	private int id;
+	/*
+	 * @Id private int id;
+	 */
 
 	private String username;
 
@@ -39,13 +40,11 @@ public class Customer {
 
 	// User getters and setters fields
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	/*
+	 * public int getId() { return id; }
+	 * 
+	 * public void setId(int id) { this.id = id; }
+	 */
 
 	public String getUsername() {
 		return username;

@@ -1,11 +1,14 @@
 package com.hotel.project.Model;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDate;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -16,9 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "BookingDetails")
-public class BookingDetails  implements Serializable{
-	
-	
+public class BookingDetails implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -32,83 +34,119 @@ public class BookingDetails  implements Serializable{
 	 * fromDate; this.toDate = toDate; }
 	 */
 	@Id
-	private Long reservationID;
-	
+	private String reservationID;
+
+	@NotNull
+	@NotBlank(message = "Name is mandatory")
 	private String customerName;
+	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
+            flags = Pattern.Flag.CASE_INSENSITIVE)
 	private String emailID;
+	//@Pattern(regexp="(^$|[0-9]{10})")
 	private String phoneNumber;
 	private String roomType;
-	private int numbder_of_persons;
-	private int numbder_of_children;
-	private Date fromDate;
-	private Date toDate;
-	
-	public long getReservationID() {
+	private int number_of_adults;
+	private int number_of_children;
+	private LocalDate fromDate;
+	private LocalDate toDate;
+	private Amenities amenities;
+
+	public String getReservationID() {
 		return reservationID;
 	}
-	public void setReservationID(long reservationID) {
+
+	public void setReservationID(String reservationID) {
 		this.reservationID = reservationID;
 	}
-	
+
 	public String getCustomerName() {
 		return customerName;
 	}
+
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
+
 	public String getEmailID() {
 		return emailID;
 	}
+
 	public void setEmailID(String emailID) {
 		this.emailID = emailID;
 	}
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 	public String getRoomType() {
 		return roomType;
 	}
+
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
-	public Date getFromDate() {
+
+	public LocalDate getFromDate() {
 		return fromDate;
 	}
-	public void setFromDate(Date fromDate) {
+
+	public void setFromDate(LocalDate fromDate) {
 		this.fromDate = fromDate;
 	}
-	public Date getToDate() {
+
+	public LocalDate getToDate() {
 		return toDate;
 	}
-	public void setToDate(Date toDate) {
+
+	public void setToDate(LocalDate toDate) {
 		this.toDate = toDate;
 	}
-	/**
-	 * @return the numbder_of_persons
-	 */
-	public int getNumbder_of_persons() {
-		return numbder_of_persons;
-	}
-	/**
-	 * @param numbder_of_persons the numbder_of_persons to set
-	 */
-	public void setNumbder_of_persons(int numbder_of_persons) {
-		this.numbder_of_persons = numbder_of_persons;
-	}
+
 	/**
 	 * @return the numbder_of_children
 	 */
-	public int getNumbder_of_children() {
-		return numbder_of_children;
-	}
-	/**
-	 * @param numbder_of_children the numbder_of_children to set
-	 */
-	public void setNumbder_of_children(int numbder_of_children) {
-		this.numbder_of_children = numbder_of_children;
+	public int getNumber_of_children() {
+		return number_of_children;
 	}
 
+	/**
+	 * @param numbder_of_children the number_of_children to set
+	 */
+	public void setNumber_of_children(int number_of_children) {
+		this.number_of_children = number_of_children;
 	}
+
+	/**
+	 * @return the amenities
+	 */
+	public Amenities getAmenities() {
+		return amenities;
+	}
+
+	/**
+	 * @param amenities the amenities to set
+	 */
+	public void setAmenities(Amenities amenities) {
+		this.amenities = amenities;
+	}
+
+	/**
+	 * @return the number_of_adults
+	 */
+	public int getNumber_of_adults() {
+		return number_of_adults;
+	}
+
+	/**
+	 * @param number_of_adults the number_of_adults to set
+	 */
+	public void setNumber_of_adults(int number_of_adults) {
+		this.number_of_adults = number_of_adults;
+	}
+
+}

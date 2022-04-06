@@ -1,8 +1,10 @@
 C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\HotelApplication.java
 C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\repository\HotelRepository.java
+C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\Model\Amenities.java
 C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\Model\BookingDetails.java
 C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\validation\FieldMatchValidator.java
 C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\exception\HotelBusinessException.java
+C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\validation\DateRangeValidator.java
 C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\Model\CustomerAuthenticationRequest.java
 C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\controller\AuthenticationController.java
 C:\Project\team-project-incognito\Group_Project\src\main\java\com\hotel\project\controller\HotelController.java

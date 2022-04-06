@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.hotel.project.service.CustomerServiceImpl;
 
@@ -25,6 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	JwtTokenGenerator jwtTokenGenerator;
+	
+	 public void addCorsMappings(CorsRegistry registry) {
+	        registry.addMapping("/**");
+	    }
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
