@@ -2,6 +2,7 @@ import React from 'react';
 import './SearchResult.css';
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import StarIcon from "@material-ui/icons/Star";
+import { Button } from '@material-ui/core'
 
 function SearchResult({
     img,
@@ -33,8 +34,9 @@ function SearchResult({
                         </p>
                     </div>
                     <div className='searchResults__price'>
-                        <h2>{price}</h2>
-                        <p>{total}</p>
+                        <h2></h2>
+                        <p></p>
+                        <Button on>Book</Button>
                     </div>
                 </div>
             </div>

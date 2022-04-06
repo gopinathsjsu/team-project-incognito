@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './Search.css'
 import { DateRangePicker } from 'react-date-range'
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
 import { Button } from '@material-ui/core'
 import PeopleIcon from "@material-ui/icons/People";
 import { useHistory } from 'react-router-dom'; 
 import Axios from 'axios'
+import AuthService from '../User_auth';
 
 function Search() {
     const history = useHistory();
@@ -25,7 +26,13 @@ function Search() {
         setStartDate(ranges.selection.startDate);
         setEndDate(ranges.selection.endDate);
     }
-    const register = () => {
+    const details = () => {
+      if(AuthService.validUser()){
+        console.log("Enter here")
+        history.push('/')
+      }
+      else{
+      history.push('/search')
       Axios.post("http://localhost:3001/hotel",{
       startdate: startDate,
       enddate : endDate,
@@ -33,9 +40,9 @@ function Search() {
     }).then((response) => {
         console.log(response)
     })}
+    }
   return (
     <div className='search'>
-      <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
       <Dropdown
         label="Where to stay?"
         options={[
@@ -46,7 +53,7 @@ function Search() {
         value={location}
         onChange={handleLocChange}
       />
-      <Button onClick={() => history.push('/search')}>Search AirBNB</Button>
+      <Button onClick={details}>Search AirBNB</Button>
     </div>
   )
 }

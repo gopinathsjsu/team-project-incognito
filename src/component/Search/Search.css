@@ -3,7 +3,7 @@
     top: 35px;
     left: 25%;
     width: 48vw;
-    height : 437px;
+    height : 80px;
     background: white;
 }
 
@@ -36,7 +36,7 @@
 .search > button {
     position: absolute;
     left: 0;
-    top: 400px;
+    top: 80px;
     text-transform: inherit !important;
     background-color: #ff7779;
     color: white;
@@ -61,7 +61,7 @@
     justify-content: center;
     position: absolute;
     left: 45%;
-    top: 340px;
+    top: 20px;
     text-transform: inherit !important;;
     color: #ff7779;
 }

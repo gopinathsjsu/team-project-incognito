@@ -7,3 +7,5 @@ export { default as SearchPage } from './SearchPage/SearchPage';
 export { default as SearchResult } from './SearchResult/SearchResults'; 
 export { default as Home } from './Home/Home'; 
 export { default as Signup } from './Signup/Signup'; 
+export { default as AuthService } from './User_auth';
+export { authHeader } from './User_auth';

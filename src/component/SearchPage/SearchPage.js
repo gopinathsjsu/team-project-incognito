@@ -1,19 +1,33 @@
-import React from 'react';
+import React , { useState } from 'react';
 import './SearchPage.css';
 import { Button } from "@material-ui/core";
 import SearchResult from "../SearchResult/SearchResults";
-
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { DateRangePicker } from 'react-date-range';
 function SearchPage() {
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const selectionRange = {
+        startDate: startDate,
+        endDate: endDate,
+        key: "selection",
+      };
+      function handleSelect(ranges) {
+        setStartDate(ranges.selection.startDate);
+        setEndDate(ranges.selection.endDate);
+    }
   return (
     <div className='searchPage'>
+            <h2>Select Dates</h2>
             <div className='searchPage__info'>
-                <p>62 stays · 26 august to 30 august · 2 guest</p>
-                <h1>Stays nearby</h1>
-                <Button variant="outlined">Cancellation Flexibility</Button>
+                { /*<Button variant="outlined">Cancellation Flexibility</Button>
                 <Button variant="outlined">Type of place</Button>
                 <Button variant="outlined">Price</Button>
                 <Button variant="outlined">Rooms and beds</Button>
-                <Button variant="outlined">More filters</Button>
+  <Button variant="outlined">More filters</Button> */}
+            
+            <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
             </div>
             <SearchResult
                 img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"
