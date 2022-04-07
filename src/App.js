@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Header, Footer, Login, SearchPage, Home, Signup} from './component';
 import SignInOutContainer from './containers/SignInOutContainer';
+import HotelRoomOverview from './component/HotelRoomOverview';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           </Route>
           <Route path="/">
             <Home />
+          </Route>
+          <Route path="/hotelRoomOverview" >
           </Route>
         </Switch>
         <Footer />

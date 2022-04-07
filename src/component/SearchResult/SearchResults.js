@@ -2,6 +2,7 @@ import React from 'react';
 import './SearchResult.css';
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import StarIcon from "@material-ui/icons/Star";
+import { useNavigate } from 'react-router';
 
 function SearchResult({
     img,
@@ -11,10 +12,19 @@ function SearchResult({
     star,
     price,
     total,
-}) {
+}) 
+
+
+{
+    const navigate = useNavigate();
+    const handleOpenImage = () => {
+        console.log("Hello, iM OPENING Hotel overview page");
+        navigate("/hotelRoomOverview");
+    }
+
     return (
         <div className='searchResult'>
-            <img src={img} alt="" />
+            <img onClick={handleOpenImage} src={img} alt="" />
             <FavoriteBorderIcon className="searchResult__heart" />
 
             <div className='searchResult__info'>
