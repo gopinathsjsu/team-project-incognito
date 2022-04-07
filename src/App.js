@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Header, Footer, Login, SearchPage, Home, Signup} from './component';
 import SignInOutContainer from './containers/SignInOutContainer';
 import HotelRoomOverview from './component/HotelRoomOverview';
+import Payment from './component/Payments/payment';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Router>
         <Header />
         <Switch>
+          
           <Route path="/search">
             <SearchPage />
           </Route>
@@ -22,11 +24,16 @@ function App() {
           <Route path="/signup">
             <Signup />
           </Route>
+          <Route path="/checkout">
+            <Payment/>
+          </Route>
           <Route path="/">
             <Home />
           </Route>
           <Route path="/hotelRoomOverview" >
           </Route>
+          
+          
         </Switch>
         <Footer />
       </ Router>
