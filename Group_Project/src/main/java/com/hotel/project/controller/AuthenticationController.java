@@ -19,12 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hotel.project.Model.Customer;
 import com.hotel.project.Model.CustomerAuthenticationRequest;
+import com.hotel.project.exception.HotelBusinessException;
 import com.hotel.project.repository.CustomerRepository;
 import com.hotel.project.security.JwtTokenGenerator;
 import com.hotel.project.service.CustomerServiceImpl;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 40000)
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 40000)
 @RequestMapping("/api/auth")
 public class AuthenticationController {
 
@@ -52,7 +53,7 @@ public class AuthenticationController {
 			model.put("token", token);
 			return ok(model);
 		} catch (AuthenticationException e) {
-			throw new BadCredentialsException("Invalid email/password supplied");
+			throw new BadCredentialsException("Invalid email/password ");
 		}
 	}
 
@@ -62,11 +63,11 @@ public class AuthenticationController {
 	public ResponseEntity register(@RequestBody Customer customer) {
 		Customer customerexists = customerService.findUserByEmail(customer.getEmail());
 		if (customerexists != null) {
-			throw new BadCredentialsException("User with username: " + customer.getEmail() + " already exists");
+			throw new HotelBusinessException("User with email: " + customer.getEmail() + " already exists. Please Login");
 		}
 		customerService.saveUser(customer);
 		Map<Object, Object> model = new HashMap<>();
-		model.put("message", "User registered successfully");
+		model.put("message", "User signup successfull");
 		return ok(model);
 	}
 }

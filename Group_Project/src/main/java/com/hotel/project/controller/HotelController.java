@@ -16,7 +16,6 @@ import com.hotel.project.Model.Hotel;
 import com.hotel.project.repository.HotelRepository;
 import com.hotel.project.service.HotelServiceImpl;
 
-
 @RestController
 @RequestMapping("/hotel-booking")
 public class HotelController {
@@ -27,14 +26,13 @@ public class HotelController {
 	@Autowired
 	public HotelRepository hotelrepository;
 
-	
 	public HotelServiceImpl hotelservice;
-	
+
 	@Autowired
-	public HotelController(HotelServiceImpl hotelservice){
-	       this.hotelservice = hotelservice;
-	    }
-	
+	public HotelController(HotelServiceImpl hotelservice) {
+		this.hotelservice = hotelservice;
+	}
+
 	@GetMapping("/searchHotel/{location}")
 	public List<Hotel> searchHotel(@PathVariable String location) {
 

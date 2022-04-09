@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotel.project.Model.BookingDetails;
+import com.hotel.project.Model.BookingResponse;
 import com.hotel.project.Model.Customer;
+import com.hotel.project.repository.CustomerRepository;
 import com.hotel.project.repository.HotelRepository;
 import com.hotel.project.service.HotelServiceImpl;
 
@@ -27,6 +28,9 @@ public class CustomerController {
 
 	@Autowired
 	public HotelRepository hotelrepository;
+	
+	@Autowired
+	public CustomerRepository customerRepository;
 
 	public HotelServiceImpl hotelservice;
 
@@ -42,11 +46,11 @@ public class CustomerController {
 	}
 
 	@PostMapping("/createBooking")
-	public ResponseEntity<BookingDetails> createBooking(@Valid @RequestBody BookingDetails customer) {
+	public ResponseEntity<BookingResponse> createBooking(@Valid @RequestBody BookingDetails customer) {
 
-		hotelservice.createBooking(customer);
+		BookingResponse bookingResponseDetails = hotelservice.createBooking(customer);
 
-		return new ResponseEntity<BookingDetails>(HttpStatus.CREATED);
+		return new ResponseEntity<BookingResponse>(bookingResponseDetails, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/getBooking")
@@ -54,11 +58,18 @@ public class CustomerController {
 
 		return hotelservice.getAllBookingDetails();
 	}
+	
+	@GetMapping("/getRewardPoints")
+	public String getRewardPoints() {
 
-	@PostMapping("/cancelBooking")
-	public String cancelBooking(@RequestParam(value = "reservationId") long reservationId) {
+		return "rewards";
+	}
 
-		hotelservice.deleteBookingDetails(reservationId);
+
+	@DeleteMapping("/cancel/{reservationID}")
+	public String cancelBooking(@PathVariable("reservationID") String reservationID) {
+
+		hotelservice.deleteBookingDetails(reservationID);
 		return "booking cancelled";
 	}
 

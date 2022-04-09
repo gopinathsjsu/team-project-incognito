@@ -12,39 +12,40 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "CustomerDetails")
 public class Customer {
 
-	/*
-	 * @Id private int id;
-	 */
+	@Id
+	private int id;
 
 	private String username;
 
 	private String password;
-	
+
 	@Indexed(unique = true, direction = IndexDirection.DESCENDING, dropDups = true)
 	private String email;
-	
+
 	@DBRef
-    private Set<Role> roles;
-	
-	/*
-	 * public Customer(String userName, String password, String email) {
-	 * this.username = userName; this.password = password; this.email = email; }
-	 */
+	private Set<Role> roles;
+
+	public Customer(String userName, String password, String email) {
+		this.username = userName;
+		this.password = password;
+		this.email = email;
+	}
 
 	// User getters and setters fields
 
-	/*
-	 * public int getId() { return id; }
-	 * 
-	 * public void setId(int id) { this.id = id; }
-	 */
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;
@@ -71,9 +72,10 @@ public class Customer {
 	}
 
 	public Set<Role> getRoles() {
-        return roles;
-    }
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 }
