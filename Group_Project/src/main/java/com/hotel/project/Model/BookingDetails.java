@@ -39,16 +39,17 @@ public class BookingDetails implements Serializable {
 	@NotNull
 	@NotBlank(message = "Name is mandatory")
 	private String customerName;
-	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
-            flags = Pattern.Flag.CASE_INSENSITIVE)
+	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
 	private String emailID;
-	//@Pattern(regexp="(^$|[0-9]{10})")
+	// @Pattern(regexp="(^$|[0-9]{10})")
 	private String phoneNumber;
 	private String roomType;
 	private int number_of_adults;
 	private int number_of_children;
 	private LocalDate fromDate;
 	private LocalDate toDate;
+	private int rewardpoints;
+	private int numberOfRooms;
 	private Amenities amenities;
 
 	public String getReservationID() {
@@ -147,6 +148,34 @@ public class BookingDetails implements Serializable {
 	 */
 	public void setNumber_of_adults(int number_of_adults) {
 		this.number_of_adults = number_of_adults;
+	}
+
+	/**
+	 * @return the rewardpoints
+	 */
+	public int getRewardpoints() {
+		return rewardpoints;
+	}
+
+	/**
+	 * @param rewardpoints the rewardpoints to set
+	 */
+	public void setRewardpoints(int rewardpoints) {
+		this.rewardpoints = rewardpoints;
+	}
+
+	/**
+	 * @return the numberOfRooms
+	 */
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
+	/**
+	 * @param numberOfRooms the numberOfRooms to set
+	 */
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
 	}
 
 }

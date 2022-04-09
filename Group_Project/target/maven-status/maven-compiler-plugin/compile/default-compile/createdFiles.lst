@@ -1,4 +1,5 @@
 com\hotel\project\Model\CustomerAuthenticationRequest.class
+com\hotel\project\pricing\Pricing.class
 com\hotel\project\validation\EmailValidator.class
 com\hotel\project\repository\BookingRepository.class
 com\hotel\project\service\CustomerService.class
@@ -9,17 +10,24 @@ com\hotel\project\controller\CustomerController.class
 com\hotel\project\Model\HotelEmployee.class
 com\hotel\project\repository\RoleRepository.class
 com\hotel\project\controller\HotelController.class
+com\hotel\project\Model\BookingResponse.class
 com\hotel\project\service\HotelService.class
+com\hotel\project\pricing\PublicHolidayPricing.class
 com\hotel\project\Model\Amenities.class
+com\hotel\project\Model\Holidays.class
 com\hotel\project\validation\FieldMatch$List.class
 com\hotel\project\Model\BookingDetails.class
 com\hotel\project\validation\FieldMatchValidator.class
+com\hotel\project\pricing\WeekendPricing.class
 com\hotel\project\validation\DateRangeValidator.class
+com\hotel\project\pricing\CustomerLoyaltyPricing.class
+com\hotel\project\pricing\WeekDayPricing.class
 com\hotel\project\Model\RoomRates.class
 com\hotel\project\Model\Customer.class
 com\hotel\project\repository\CustomerRepository.class
 com\hotel\project\Model\Hotel.class
 com\hotel\project\service\CustomerServiceImpl.class
+com\hotel\project\response\BookingResponseDetailsBuilder.class
 com\hotel\project\Model\Role.class
 com\hotel\project\security\JwtConfigurer.class
 com\hotel\project\security\JwtTokenFilter.class
@@ -31,3 +39,4 @@ com\hotel\project\repository\HotelRepository.class
 com\hotel\project\security\WebSecurityConfig.class
 com\hotel\project\validation\FieldMatch.class
 com\hotel\project\Model\Room.class
+com\hotel\project\pricing\ChristmasPricing.class
