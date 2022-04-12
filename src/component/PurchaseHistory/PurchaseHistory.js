@@ -49,7 +49,7 @@ function PurchaseHistory() {
   } else {
     renderPurchases = bookingHistory.map((pro) => {
       return (
-        <div className="home_cards mb-4">
+        <div style={{width:"50%"}} className="home_cards col-md-4 mb-4">
           <div className="home_card card">
             <div
               className="purchase_item_header"
@@ -69,7 +69,6 @@ function PurchaseHistory() {
                 <h5 className="card-title">{pro.hotelName}</h5>
 
                 <p className="card-text">{pro.hotelDescription}</p>
-
 
                 <button onClick={editBooking} className="btn-sm btn-dark">Edit</button>
                 <button onClick={cancelBooking} className="btn-sm btn-dark">Cancel</button>
