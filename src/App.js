@@ -1,17 +1,16 @@
-import './App.css';
+import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Header, Footer, Login, SearchPage, Home, Signup} from './component';
-import SignInOutContainer from './containers/SignInOutContainer';
-import HotelRoomOverview from './component/HotelRoomOverview';
-import Payment from './component/Payments/payment';
-
+import { Header, Footer, Login, SearchPage, Home, Signup } from "./component";
+import SignInOutContainer from "./containers/SignInOutContainer";
+// import HotelRoomOverview from "./component/HotelRoomOverview";
+import Payment from "./component/Payments/payment";
+import PurchaseHistory from "./component/PurchaseHistory/PurchaseHistory"
 function App() {
   return (
     <div className="app">
-        <Router>
+      <Router>
         <Header />
         <Switch>
-          
           <Route path="/search">
             <SearchPage />
           </Route>
@@ -25,18 +24,20 @@ function App() {
             <Signup />
           </Route>
           <Route path="/checkout">
-            <Payment/>
+            <Payment />
+          </Route>
+          <Route path="/purchaseHistory">
+            <PurchaseHistory />
           </Route>
           <Route path="/">
             <Home />
           </Route>
-          <Route path="/hotelRoomOverview" >
-          </Route>
-          
-          
+
+          {/* <Route path="/hotelRoomOverview" >
+          </Route> */}
         </Switch>
         <Footer />
-      </ Router>
+      </Router>
     </div>
   );
 }
