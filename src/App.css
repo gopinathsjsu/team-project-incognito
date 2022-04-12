@@ -855,6 +855,7 @@
   .item-details {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
   }
   
   .purchases_header {
