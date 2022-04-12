@@ -1,0 +1,8 @@
+.display-image img{
+    height:500px;
+    width:70%;
+    margin-Left:100px
+}
+.display-image{
+    display:flex
+}
