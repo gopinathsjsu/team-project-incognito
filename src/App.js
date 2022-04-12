@@ -2,9 +2,11 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Header, Footer, Login, SearchPage, Home, Signup } from "./component";
 import SignInOutContainer from "./containers/SignInOutContainer";
-// import HotelRoomOverview from "./component/HotelRoomOverview";
+import HotelRoomOverview from "./component/RoomDetails/HotelRoomOverview";
 import Payment from "./component/Payments/payment";
 import PurchaseHistory from "./component/PurchaseHistory/PurchaseHistory"
+
+
 function App() {
   return (
     <div className="app">
@@ -29,12 +31,14 @@ function App() {
           <Route path="/purchaseHistory">
             <PurchaseHistory />
           </Route>
+          <Route path="/roomDetails" >
+            <HotelRoomOverview/>
+          </Route>
+
           <Route path="/">
             <Home />
           </Route>
 
-          {/* <Route path="/hotelRoomOverview" >
-          </Route> */}
         </Switch>
         {/* <Footer /> */}
       </Router>
