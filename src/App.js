@@ -36,7 +36,7 @@ function App() {
           {/* <Route path="/hotelRoomOverview" >
           </Route> */}
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );

@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function PurchaseHistory() {
-  const [purchasedProducts, setPurchasedProducts] = useState([]);
+  const [bookingHistory, setBookingHistory] = useState([]);
   // const [purchasedProducts, setPurchasedProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -12,18 +12,42 @@ function PurchaseHistory() {
       getBookingHistory();
     }, []);
 
+    const editBooking = () => {
+        console.log("Edit booking axios");
+    }
+
+    const cancelBooking = () => {
+        console.log("Cancel booking");
+    }
+ 
     const getBookingHistory = () => {
-        console.log("hello")
+        const history = [
+            {
+                id: "1",
+                hotelName:"Raddisson",
+                hotelLocation:"Santa Cruz",
+                hotelImage:"https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg",
+                hotelDescription:"Santa Cruz Hotels",
+                hotelPrice: "1000"
+            },  {
+                id: "2",
+                hotelName:"Triago",
+                hotelLocation:"Santa Cruz",
+                hotelImage:"https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg",
+                hotelDescription:"San Francisco Hotels",
+                hotelPrice: "1000"
+            }
+        ]
+        setBookingHistory(history);
     }
 
   let renderPurchases = null;
-
-  if (purchasedProducts.length === 0) {
+  if (bookingHistory.length === 0) {
     renderPurchases = () => {
       return <div>No Purchases till now...</div>;
     };
   } else {
-    renderPurchases = purchasedProducts.map((pro) => {
+    renderPurchases = bookingHistory.map((pro) => {
       return (
         <div className="home_cards mb-4">
           <div className="home_card card">
@@ -31,29 +55,25 @@ function PurchaseHistory() {
               className="purchase_item_header"
               style={{ backgroundColor: "rgb(243, 234, 223)" }}
             >
-              <p className="purchase_item_price">Item Price ${pro.itemPrice}</p>
+              <p className="purchase_item_price">Room Price ${pro.hotelPrice}</p>
               <p style={{ width: "70%" }} className="purchase_item_price">
-                Order Id #{pro._id}
+                Booking Id #{pro.id}
               </p>
             </div>
 
             <hr style={{ marginTop: "-2px" }}></hr>
             <div className="item">
-              <img src={pro.itemImage} className="card-img-left" alt="..." />
+              <img src={pro.hotelImage} className="card-img-left" alt="..." />
 
               <div style={{ marginLeft: "10px" }} className="item-details">
-                <h5 className="card-title">{pro.itemName}</h5>
+                <h5 className="card-title">{pro.hotelName}</h5>
 
-                <p className="card-text">{pro.itemDescription}</p>
-                <p className="card-text">Quantity: {pro.qty}</p>
+                <p className="card-text">{pro.hotelDescription}</p>
 
-                {pro.giftMessage !== "" ? (
-                  <p className="card-text">Gift Message: {pro.giftMessage}</p>
-                ) : (
-                  <p className="card-text"></p>
-                )}
 
-                {/* <button className="btn-sm btn-dark">Edit</button> */}
+                <button onClick={editBooking} className="btn-sm btn-dark">Edit</button>
+                <button onClick={cancelBooking} className="btn-sm btn-dark">Cancel</button>
+
               </div>
             </div>
           </div>
