@@ -49,13 +49,13 @@ function PurchaseHistory() {
   } else {
     renderPurchases = bookingHistory.map((pro) => {
       return (
-        <div style={{width:"50%"}} className="home_cards col-md-4 mb-4">
+        <div style={{width:"50%", marginLeft:"25%"}}  className="home_cards col-md-4 mb-4">
           <div className="home_card card">
             <div
               className="purchase_item_header"
-              style={{ backgroundColor: "rgb(243, 234, 223)" }}
+              style={{ backgroundColor:"rgb(241 161 162)", height:"40px"}}
             >
-              <p className="purchase_item_price">Room Price ${pro.hotelPrice}</p>
+              <p style={{ width: "50%" }} className="purchase_item_price">Room Price ${pro.hotelPrice}</p>
               <p style={{ width: "70%" }} className="purchase_item_price">
                 Booking Id #{pro.id}
               </p>
@@ -70,8 +70,8 @@ function PurchaseHistory() {
 
                 <p className="card-text">{pro.hotelDescription}</p>
 
-                <button onClick={editBooking} className="btn-sm btn-dark">Edit</button>
-                <button onClick={cancelBooking} className="btn-sm btn-dark">Cancel</button>
+                <button style={{backgroundColor:"rgb(241 161 162)"}} onClick={editBooking} className="MuiButtonBase-root MuiButton-root MuiButton-outlined">Edit</button>
+                <button style={{backgroundColor:"rgb(241 161 162)"}} onClick={cancelBooking} className="MuiButtonBase-root MuiButton-root MuiButton-outlined">Cancel</button>
 
               </div>
             </div>
