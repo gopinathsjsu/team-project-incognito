@@ -23,7 +23,7 @@ function SearchPage() {
             <SearchResult
                 
                 img ="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"
-                
+                location="London"
                 title="Stay at this spacious Edwardian House"
                 description="1 guest · 1 bedroom · 1 bed · 1.5 shared bthrooms · Wifi · Kitchen · Free parking · Washing Machine"
                 star={4.73}
