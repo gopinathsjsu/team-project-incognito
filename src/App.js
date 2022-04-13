@@ -25,16 +25,19 @@ function App() {
           <Route path="/signup">
             <Signup />
           </Route>
-          <Route path="/checkout">
+          {/* <Route path="/payment">
             <Payment />
-          </Route>
+          </Route> */}
           <Route path="/purchaseHistory">
             <PurchaseHistory />
           </Route>
           <Route path="/roomDetails" >
             <HotelRoomOverview/>
           </Route>
-
+          <Route path="/payment">
+            <Payment />
+          </Route>
+          
           <Route path="/">
             <Home />
           </Route>

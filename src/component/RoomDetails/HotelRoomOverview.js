@@ -149,9 +149,9 @@ const HotelRoomOverview = (props) => {
               <br></br>
               
               <div>
-                {/* <Link to={{pathname: '/payments/'}}> */}
+                <Link to={{pathname: '/payment'}}>
                   <button className="continue-btn"> Continue to Book </button>
-                {/* </Link> */}
+                </Link>
               </div>
               <br></br>
 
