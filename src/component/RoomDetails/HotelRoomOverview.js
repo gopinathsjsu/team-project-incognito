@@ -154,15 +154,17 @@ const HotelRoomOverview = (props) => {
                 </Link>
               </div>
               <br></br>
+              <div className='guest-policies'>
+                <p> * By proceeding, you agree to our Guest Policies. </p>
+                <p> * Follow safety measures advised at the hotel. </p>
+              </div>
 
               {/* <Link to={`/payment/${id}`}>
                 <button className="continue-btn">Continue to Book</button>
               </Link> */}
               <br></br> <br></br>
               <div className="redFont">
-                <p>Cancellation Policy</p>
-                <p>Follow safety measures advised at the hotel</p>
-                <p>By proceeding, you agree to our Guest Policies.</p>
+                <p><Link>Cancellation Policy</Link></p>
               </div>
             </div>
       </div>
