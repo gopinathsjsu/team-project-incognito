@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Customer {
 
 	@Id
-	private int id;
+	private String _id;
 
 	private String username;
 
@@ -39,12 +39,12 @@ public class Customer {
 
 	// User getters and setters fields
 
-	public int getId() {
-		return id;
+	public String getId() {
+		return _id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(String id) {
+		this._id = id;
 	}
 
 	public String getUsername() {
