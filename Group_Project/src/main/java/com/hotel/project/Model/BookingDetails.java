@@ -7,6 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -42,13 +43,20 @@ public class BookingDetails implements Serializable {
 	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
 	private String emailID;
 	// @Pattern(regexp="(^$|[0-9]{10})")
+	@NotBlank(message = "phoneNumber is mandatory")
 	private String phoneNumber;
+	@NotBlank(message = "roomType is mandatory")
 	private String roomType;
-	private int number_of_adults;
-	private int number_of_children;
+	@Size(min=1,max =4)
+	private Integer number_of_adults;
+	@Size(min=0,max =4)
+	private Integer number_of_children;
+	@NotBlank(message = "fromDate is mandatory")
 	private LocalDate fromDate;
+	@NotBlank(message = "toDate is mandatory")
 	private LocalDate toDate;
 	private int rewardpoints;
+	@NotBlank(message = "Number of Rooms is mandatory")
 	private int numberOfRooms;
 	private Amenities amenities;
 
@@ -111,14 +119,14 @@ public class BookingDetails implements Serializable {
 	/**
 	 * @return the numbder_of_children
 	 */
-	public int getNumber_of_children() {
+	public Integer getNumber_of_children() {
 		return number_of_children;
 	}
 
 	/**
 	 * @param numbder_of_children the number_of_children to set
 	 */
-	public void setNumber_of_children(int number_of_children) {
+	public void setNumber_of_children(Integer number_of_children) {
 		this.number_of_children = number_of_children;
 	}
 
@@ -139,14 +147,14 @@ public class BookingDetails implements Serializable {
 	/**
 	 * @return the number_of_adults
 	 */
-	public int getNumber_of_adults() {
+	public Integer getNumber_of_adults() {
 		return number_of_adults;
 	}
 
 	/**
 	 * @param number_of_adults the number_of_adults to set
 	 */
-	public void setNumber_of_adults(int number_of_adults) {
+	public void setNumber_of_adults(Integer number_of_adults) {
 		this.number_of_adults = number_of_adults;
 	}
 

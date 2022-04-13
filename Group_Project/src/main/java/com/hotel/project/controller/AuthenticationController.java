@@ -42,7 +42,7 @@ public class AuthenticationController {
 	private CustomerServiceImpl customerService;
 
 	@SuppressWarnings("rawtypes")
-	@PostMapping("/login")
+	@PostMapping("/signin")
 	public ResponseEntity login(@RequestBody CustomerAuthenticationRequest data) {
 		try {
 			String username = data.getEmail();
@@ -59,7 +59,7 @@ public class AuthenticationController {
 
 	@SuppressWarnings("rawtypes")
 	//@CrossOrigin(origins = "http://192.168.137.171:3000")
-	@PostMapping("/register")
+	@PostMapping("/signup")
 	public ResponseEntity register(@RequestBody Customer customer) {
 		Customer customerexists = customerService.findUserByEmail(customer.getEmail());
 		if (customerexists != null) {
