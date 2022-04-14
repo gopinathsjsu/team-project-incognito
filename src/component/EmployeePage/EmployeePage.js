@@ -53,7 +53,9 @@ function PurchaseHistory() {
             <hr style={{ marginTop: "-2px" }}></hr>
 
             <div className="item">
+
               <div style={{ marginLeft: "10px" }} className="item-details">
+                  
                 <h5 style={{marginTop:"5px" }}> Customer Name: </h5>
                 <p className="card-title"> {pro.customerName} </p>
                 <h5 style={{marginTop:"5px" }}> Check-in Date: </h5>
