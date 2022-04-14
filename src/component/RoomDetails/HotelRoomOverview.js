@@ -111,7 +111,7 @@ const HotelRoomOverview = (props) => {
                       <li> Shopping Mall </li>
                       <li> Mini Markets</li>
                       <li> Pharmacies </li>
-                    </ul>
+                    </ul> <br></br> <br></br>
                   </div>
                 </div>
           </div>
