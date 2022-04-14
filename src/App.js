@@ -4,7 +4,8 @@ import { Header, Footer, Login, SearchPage, Home, Signup } from "./component";
 import SignInOutContainer from "./containers/SignInOutContainer";
 import HotelRoomOverview from "./component/RoomDetails/HotelRoomOverview";
 import Payment from "./component/Payments/payment";
-import PurchaseHistory from "./component/PurchaseHistory/PurchaseHistory"
+import PurchaseHistory from "./component/PurchaseHistory/PurchaseHistory";
+import EmployeePage from "./component/EmployeePage/EmployeePage"
 
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/payment">
             <Payment />
+          </Route>
+          <Route path="/employeePage">
+            <EmployeePage />
           </Route>
           
           <Route path="/">
