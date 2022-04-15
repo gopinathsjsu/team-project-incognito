@@ -4,19 +4,8 @@ import { Button } from "@material-ui/core";
 import SearchResult from "../SearchResult/SearchResults";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { DateRangePicker } from 'react-date-range';
+import { Header } from '..';
 function SearchPage() {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-    const selectionRange = {
-        startDate: startDate,
-        endDate: endDate,
-        key: "selection",
-      };
-      function handleSelect(ranges) {
-        setStartDate(ranges.selection.startDate);
-        setEndDate(ranges.selection.endDate);
-    }
   return (
     <div className='searchPage'>
             <h2>Select Dates</h2>
@@ -25,19 +14,17 @@ function SearchPage() {
                 <Button variant="outlined">Type of place</Button>
                 <Button variant="outlined">Price</Button>
                 <Button variant="outlined">Rooms and beds</Button>
-  <Button variant="outlined">More filters</Button> */}
-            
-            <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
+  <Button variant="outlined">More filters</Button> */ }
             </div>
             <SearchResult
                 img="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"
-                title="Stay at this spacious Edwardian House"
-                description="1 guest · 1 bedroom · 1 bed · 1.5 shared bthrooms · Wifi · Kitchen · Free parking · Washing Machine"
+                title = "Hotela"
+                // description="1 guest · 1 bedroom · 1 bed · 1.5 shared bthrooms · Wifi · Kitchen · Free parking · Washing Machine"
                 star={4.73}
-                price="£30 / night"
-                total="£117 total"
+                // price="£30 / night"
+                // total="£117 total"
             />
-            <SearchResult
+            {/* <SearchResult
                 img="https://www.expatkings.com/wp-content/uploads/2018/10/Airbnb-rental-tips.-Hostmaker-1-620x349.jpg"
                 location="Private room in center of London"
                 title="Independant luxury studio apartment"
@@ -91,7 +78,7 @@ function SearchPage() {
                 star={3.85}
                 price="£90 / night"
                 total="£650 total"
-            />
+            /> */}
 
         </div>
   )

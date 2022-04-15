@@ -9,3 +9,4 @@ export { default as Home } from './Home/Home';
 export { default as Signup } from './Signup/Signup'; 
 export { default as AuthService } from './User_auth';
 export { authHeader } from './User_auth';
+export { default as Balance } from './Balance/Balance';

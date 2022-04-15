@@ -19,8 +19,13 @@ const Login=()=>{
 
     const register = () => {
         setLoading(true)
+        if( userName == "" || userPassword == ""){
+            window.alert("Username or Password Missing")
+            return
+        }
         AuthService.login(userName, userPassword).then(
             () => { history.push('/') 
+            window.location.reload(false);
             },
             error => {
                 const resMessage =

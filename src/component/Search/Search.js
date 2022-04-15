@@ -27,8 +27,7 @@ function Search() {
         setEndDate(ranges.selection.endDate);
     }
     const details = () => {
-      if(AuthService.validUser()){
-        console.log("Enter here")
+      if(!AuthService.validUser()){
         history.push('/')
       }
       else{
