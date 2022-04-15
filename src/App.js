@@ -9,14 +9,23 @@ import EmployeePage from "./component/EmployeePage/EmployeePage"
 
 
 function App() {
+  const [valid, setvalidState] = useState("false");
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    console.log(user)
+    if(user == null){
+      setvalidState(true)
+    }
+  }, [])
+
   return (
     <div className="app">
       <Router>
         <Header />
-        <Switch>
-          <Route path="/search">
-            <SearchPage />
-          </Route>
+        <Switch> 
+            <Route path="/search">
+              <SearchPage />
+            </Route>
           <Route path="/login">
             <SignInOutContainer />
           </Route>

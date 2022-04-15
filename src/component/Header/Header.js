@@ -1,24 +1,62 @@
-import React from 'react';
+import React , { useEffect, useState } from 'react';
 import './Header.css'
-import SearchIcon from "@material-ui/icons/Search";
-import LanguageIcon from "@material-ui/icons/Language";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Avatar } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import { Button } from '@material-ui/core'
+import { Button } from '@material-ui/core';
+import logo from "../../Asset/logo_1.png";
+import { AuthService } from '..';
+import Account from './Account';
+
 function Header() {
+  const [valid, setvalidState] = useState("false");
+  const [rerender, setRerender] = useState(false);
+  let button;
+  useEffect(() => {
+     let x = AuthService.validUser()
+     console.log("here ",x)
+      if(!x){
+         setvalidState(false)
+      }
+      else{
+        setvalidState(true)
+      } 
+  }, [valid])
+
+  // const register = () => {
+  //   setLoading(true)
+  //   AuthService.login(userName, userPassword).then(
+  //       () => { history.push('/') 
+  //       },
+  //       error => {
+  //           const resMessage =
+  //           (error.response &&
+  //           error.response.data &&
+  //           error.response.data.message) ||
+  //           error.message ||
+  //           error.toString();
+  //           setLoading(false)
+  //       }
+  //   )
+  // }
+
+  if (valid) {
+    button = 
+      <Account />
+  } else {
+    button = 
+    <Link to='./Login' className="header__right" style={{ textDecoration: 'none' }}>
+    <Button variant='outlined'>Login</Button>
+    </Link> 
+  }
   return (
     <div class='header'>
         <Link to='/'>
         <img
             className='header__icon'
-            src="https://i.pinimg.com/originals/3c/bf/be/3cbfbe148597341fa56f2f87ade90956.png"
+            src={logo}
             alt=""
         />
         </Link>
-        <Link to='./Login' className="header__right">
-            <Button variant='outlined'>Login</Button>
-        </Link>        
+        { button }     
     </div>
   )
 }
