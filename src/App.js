@@ -1,8 +1,12 @@
-import './App.css';
+import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Header, Footer, Login, SearchPage, Home, Signup, AuthService} from './component';
-import SignInOutContainer from './containers/SignInOutContainer';
-import React, { useEffect, useState } from 'react'
+import { Header, Footer, Login, SearchPage, Home, Signup } from "./component";
+import SignInOutContainer from "./containers/SignInOutContainer";
+import HotelRoomOverview from "./component/RoomDetails/HotelRoomOverview";
+import Payment from "./component/Payments/payment";
+import PurchaseHistory from "./component/PurchaseHistory/PurchaseHistory";
+import EmployeePage from "./component/EmployeePage/EmployeePage"
+
 
 function App() {
   const [valid, setvalidState] = useState("false");
@@ -16,7 +20,7 @@ function App() {
 
   return (
     <div className="app">
-        <Router>
+      <Router>
         <Header />
         <Switch> 
             <Route path="/search">
@@ -31,12 +35,29 @@ function App() {
           <Route path="/signup">
             <Signup />
           </Route>
+          {/* <Route path="/payment">
+            <Payment />
+          </Route> */}
+          <Route path="/purchaseHistory">
+            <PurchaseHistory />
+          </Route>
+          <Route path="/roomDetails" >
+            <HotelRoomOverview/>
+          </Route>
+          <Route path="/payment">
+            <Payment />
+          </Route>
+          <Route path="/employeePage">
+            <EmployeePage />
+          </Route>
+          
           <Route path="/">
             <Home />
           </Route>
+
         </Switch>
-        <Footer />
-      </ Router>
+        {/* <Footer /> */}
+      </Router>
     </div>
   );
 }

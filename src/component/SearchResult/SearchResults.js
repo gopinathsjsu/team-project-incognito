@@ -19,7 +19,10 @@ function SearchResult({
     const [showSearch, setShowSearch] = useState(false);
     return (
         <div className='searchResult'>
-            <img src={img} alt="" />
+            <Link to={{pathname: '/roomdetails/', state:{data:stateData}}}>
+                <img style={{width:"550px", height:"300px"}}src ={img}/>
+            </Link>
+            {/* <img onClick={handleOpenImage} src={img} alt="" /> */}
             <FavoriteBorderIcon className="searchResult__heart" />
             
             <div className='searchResult__info'>

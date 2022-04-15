@@ -1,7 +1,13 @@
 package com.hotel.project.Model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,9 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "BookingDetails")
-public class BookingDetails  implements Serializable{
-	
-	
+public class BookingDetails implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -31,58 +36,154 @@ public class BookingDetails  implements Serializable{
 	 */
 	@Id
 	private String reservationID;
-	
-	
+
+	@NotNull
+	@NotBlank(message = "Name is mandatory")
 	private String customerName;
+	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
 	private String emailID;
+	// @Pattern(regexp="(^$|[0-9]{10})")
+	@NotBlank(message = "phoneNumber is mandatory")
 	private String phoneNumber;
+	@NotBlank(message = "roomType is mandatory")
 	private String roomType;
-	
+	@Size(min=1,max =4)
+	private Integer number_of_adults;
+	@Size(min=0,max =4)
+	private Integer number_of_children;
+	@NotBlank(message = "fromDate is mandatory")
+	private LocalDate fromDate;
+	@NotBlank(message = "toDate is mandatory")
+	private LocalDate toDate;
+	private int rewardpoints;
+	@NotBlank(message = "Number of Rooms is mandatory")
+	private int numberOfRooms;
+	private Amenities amenities;
+
 	public String getReservationID() {
 		return reservationID;
 	}
+
 	public void setReservationID(String reservationID) {
 		this.reservationID = reservationID;
 	}
-	
+
 	public String getCustomerName() {
 		return customerName;
 	}
+
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
+
 	public String getEmailID() {
 		return emailID;
 	}
+
 	public void setEmailID(String emailID) {
 		this.emailID = emailID;
 	}
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 	public String getRoomType() {
 		return roomType;
 	}
+
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
-	public Date getFromDate() {
+
+	public LocalDate getFromDate() {
 		return fromDate;
 	}
-	public void setFromDate(Date fromDate) {
+
+	public void setFromDate(LocalDate fromDate) {
 		this.fromDate = fromDate;
 	}
-	public Date getToDate() {
+
+	public LocalDate getToDate() {
 		return toDate;
 	}
-	public void setToDate(Date toDate) {
+
+	public void setToDate(LocalDate toDate) {
 		this.toDate = toDate;
 	}
-	private Date fromDate;
-	private Date toDate;
-		
 
+	/**
+	 * @return the numbder_of_children
+	 */
+	public Integer getNumber_of_children() {
+		return number_of_children;
 	}
+
+	/**
+	 * @param numbder_of_children the number_of_children to set
+	 */
+	public void setNumber_of_children(Integer number_of_children) {
+		this.number_of_children = number_of_children;
+	}
+
+	/**
+	 * @return the amenities
+	 */
+	public Amenities getAmenities() {
+		return amenities;
+	}
+
+	/**
+	 * @param amenities the amenities to set
+	 */
+	public void setAmenities(Amenities amenities) {
+		this.amenities = amenities;
+	}
+
+	/**
+	 * @return the number_of_adults
+	 */
+	public Integer getNumber_of_adults() {
+		return number_of_adults;
+	}
+
+	/**
+	 * @param number_of_adults the number_of_adults to set
+	 */
+	public void setNumber_of_adults(Integer number_of_adults) {
+		this.number_of_adults = number_of_adults;
+	}
+
+	/**
+	 * @return the rewardpoints
+	 */
+	public int getRewardpoints() {
+		return rewardpoints;
+	}
+
+	/**
+	 * @param rewardpoints the rewardpoints to set
+	 */
+	public void setRewardpoints(int rewardpoints) {
+		this.rewardpoints = rewardpoints;
+	}
+
+	/**
+	 * @return the numberOfRooms
+	 */
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
+	/**
+	 * @param numberOfRooms the numberOfRooms to set
+	 */
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
+	}
+
+}

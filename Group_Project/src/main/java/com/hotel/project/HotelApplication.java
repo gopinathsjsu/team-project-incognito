@@ -1,9 +1,12 @@
 package com.hotel.project;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+
+import com.hotel.project.Model.Role;
+import com.hotel.project.repository.RoleRepository;
 /*
 APIs - input and output of API should be in JSON and should include error handling and validation of inputs
 APIs can be demonstrated using a basic Web/mobile UI or through Postman
@@ -34,5 +37,20 @@ public class HotelApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HotelApplication.class, args);
 	}
-
+	
+	/*
+	 * @Bean CommandLineRunner init(RoleRepository roleRepository) {
+	 * 
+	 * return args -> {
+	 * 
+	 * Role adminRole = roleRepository.findByRole("ADMIN"); if (adminRole == null) {
+	 * Role newAdminRole = new Role(); newAdminRole.setRole("ADMIN");
+	 * roleRepository.save(newAdminRole); }
+	 * 
+	 * Role userRole = roleRepository.findByRole("USER"); if (userRole == null) {
+	 * Role newUserRole = new Role(); newUserRole.setRole("USER");
+	 * roleRepository.save(newUserRole); } };
+	 * 
+	 * }
+	 */
 }
