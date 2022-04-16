@@ -10,3 +10,6 @@ export { default as Signup } from './Signup/Signup';
 export { default as AuthService } from './User_auth';
 export { authHeader } from './User_auth';
 export { default as Balance } from './Balance/Balance';
+export { default as Employee } from './EmployeePage/EmployeePage';
+export { default as Bookingdetails } from './PurchaseHistory/Bookingdetails';
+export { default as Update } from './Update/Update';

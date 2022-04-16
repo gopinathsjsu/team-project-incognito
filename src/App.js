@@ -1,26 +1,24 @@
-import "./App.css";
+import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Header, Footer, Login, SearchPage, Home, Signup } from "./component";
-import SignInOutContainer from "./containers/SignInOutContainer";
-import HotelRoomOverview from "./component/RoomDetails/HotelRoomOverview";
-import Payment from "./component/Payments/payment";
-import PurchaseHistory from "./component/PurchaseHistory/PurchaseHistory";
-import EmployeePage from "./component/EmployeePage/EmployeePage"
-
+import { Header, Footer, Login, SearchPage, Home, Signup, AuthService, Balance, Employee, Bookingdetails, Update } from './component';
+import SignInOutContainer from './containers/SignInOutContainer';
+import React, { useEffect, useState } from 'react'
 
 function App() {
-  const [valid, setvalidState] = useState("false");
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-    console.log(user)
-    if(user == null){
-      setvalidState(true)
-    }
-  }, [])
+  // const [valid, setvalidState] = useState("false");
+  // useEffect(() => {
+  //   const user = AuthService.getCurrentUser();
+  //   console.log(user)
+  //   if(user == null){
+  //     setvalidState(true)
+  //   }
+  // }, [])
+
+
 
   return (
     <div className="app">
-      <Router>
+        <Router>
         <Header />
         <Switch> 
             <Route path="/search">
@@ -35,29 +33,24 @@ function App() {
           <Route path="/signup">
             <Signup />
           </Route>
-          {/* <Route path="/payment">
-            <Payment />
-          </Route> */}
-          <Route path="/purchaseHistory">
-            <PurchaseHistory />
+          <Route path="/balance">
+              <Balance />
           </Route>
-          <Route path="/roomDetails" >
-            <HotelRoomOverview/>
+          <Route path="/employee">
+              <Employee />
           </Route>
-          <Route path="/payment">
-            <Payment />
+          <Route path="/update">
+              <Update />
           </Route>
-          <Route path="/employeePage">
-            <EmployeePage />
+          <Route path="/booked">
+              <Bookingdetails />
           </Route>
-          
           <Route path="/">
             <Home />
           </Route>
-
         </Switch>
-        {/* <Footer /> */}
-      </Router>
+        <Footer />
+      </ Router>
     </div>
   );
 }

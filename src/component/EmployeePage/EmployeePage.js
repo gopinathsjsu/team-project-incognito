@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function PurchaseHistory() {
+function Employee() {
   const [bookingHistory, setBookingHistory] = useState([]);
   // const [purchasedProducts, setPurchasedProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -89,4 +89,4 @@ function PurchaseHistory() {
   );
 }
 
-export default PurchaseHistory;
+export default Employee;
