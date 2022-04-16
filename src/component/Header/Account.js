@@ -36,6 +36,10 @@ function Account() {
   const bal = () => {
     history.push('/balance') 
   }
+
+  const booking = () => {
+    history.push('/booked') 
+  }
 //   const register = () => {
 //     setLoading(true)
 //     AuthService.login(userName, userPassword).then(
@@ -60,7 +64,7 @@ function Account() {
       </div>
       {isActive && (
         <div className = "dropdown_content">
-          <div className = "dropdown_item">
+          <div className = "dropdown_item" onClick = {() => booking()}>
               Booking
           </div>
           <div className = "dropdown_item" onClick = {() => bal()}>

@@ -20,11 +20,12 @@ class AuthService {
     return Promise.resolve(localStorage.removeItem('user'));
   }
 
-  register(username, email, password) {
+  register(username, email, password, phoneNumber) {
     return axios.post(API_URL + "signup", {
       //username,
       email,
-      password
+      password,
+      phoneNumber
     });
   }
 
@@ -46,9 +47,20 @@ class AuthService {
        });
   }
 
-  getBookingConfirmation(roomType, fromDate, toDate, daily_continental_breakfast, access_to_fitness_room, access_to_swimming_Pool_Jacuzzi, daily_parking, all_meals_included){
+  getBookingDetails(){
     let x = localStorage.getItem('user')
     let email = x.username;
+    return axios
+        .post(API_book + "booking/"+email)
+          .then(response => {
+                   return JSON.stringify(response.data);
+          })
+  }
+
+  getBookingConfirmation(roomType, fromDate, toDate, daily_continental_breakfast, access_to_fitness_room, access_to_swimming_Pool_Jacuzzi, daily_parking, all_meals_included, numberOfRooms, number_of_children, number_of_adults){
+    let x = localStorage.getItem('user')
+    let email = x.username;
+    console.log("Welcome")
     return axios
        .post(API_URL + "confirmbooking", {
         //"emailID": "ravi@gmail123.com",
@@ -60,6 +72,9 @@ class AuthService {
         fromDate,
         //"toDate": "2022-01-29",
         toDate,
+        numberOfRooms,
+        number_of_children,
+        number_of_adults,
         amenities: {
         daily_continental_breakfast,
         access_to_fitness_room,
@@ -76,6 +91,39 @@ class AuthService {
       });
   }
 
+  getUserUpdate(roomType, fromDate, toDate, daily_continental_breakfast, access_to_fitness_room, access_to_swimming_Pool_Jacuzzi, daily_parking, all_meals_included, numberOfRooms, number_of_children, number_of_adults)
+  {
+    let x = localStorage.getItem('user')
+    let email = x.username;
+    return axios
+       .post(API_URL + "updatebooking", {
+        //"emailID": "ravi@gmail123.com",
+        email,
+        //"phoneNumber": "+1 9876543211",
+        //"roomType": "family",
+        roomType,
+        //"fromDate": "2022-11-21",
+        fromDate,
+        //"toDate": "2022-01-29",
+        toDate,
+        numberOfRooms,
+        number_of_children,
+        number_of_adults,
+        amenities: {
+        daily_continental_breakfast,
+        access_to_fitness_room,
+        access_to_swimming_Pool_Jacuzzi,
+        daily_parking,
+        all_meals_included
+      }
+      })
+      .then(response => {
+        if (response.data.accessToken) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
+        return response.data;
+      });
+  }
 
   validUser(){
       //var x = JSON.parse(localStorage.getItem('user'));

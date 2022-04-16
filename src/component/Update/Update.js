@@ -1,16 +1,79 @@
-import React, { useState } from 'react';
-import './SearchResult.css';
-import './Details.css';
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import StarIcon from "@material-ui/icons/Star";
+import React, {useEffect, useState} from 'react';
+import AuthService from '../User_auth';
+import { useHistory } from 'react-router-dom'; 
+import './Update.css';
 import { Button } from '@material-ui/core';
 import { DateRangePicker } from 'react-date-range';
 import RoomServiceIcon from '@mui/icons-material/RoomService';
 import BedroomParentIcon from '@mui/icons-material/BedroomParent';
-import AuthService from '../User_auth';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
-function Details() {
+function Update() {
+
+
+    // daily_continental_breakfast,
+    //     access_to_fitness_room,
+    //     access_to_swimming_Pool_Jacuzzi,
+    //     daily_parking,
+    //     all_meals_included
+    const[curr, setCurr] = useState([]);
+    const[breakfast_book, setBreak] = useState("Yes");
+    const[fit_book, setFit] = useState("No");
+    const[swim_book, setSwim] = useState("No");
+    const[park_book, setPark] = useState("No");
+    const[meal_book, setMeal] = useState("No");
+
+    const { search } = useLocation()
+    const {query} = queryString.parse(search)
+
+    let x = {
+        "fromDate" : "2022-04-30",
+        "toDate" : "2022-05-07",
+        "amenities": {
+            "daily_continental_breakfast":true,
+            "access_to_fitness_room":false,
+            "access_to_swimming_Pool_Jacuzzi":true,
+            "daily_parking":true,
+            "all_meals_included":false
+          }
+    }
+
+    useEffect(() => {
+        setCurr(x)
+        if(x.amenities.daily_continental_breakfast){
+            setBreak("Yes")
+        }
+        if(x.amenities.access_to_fitness_room){
+            setFit("Yes")
+        }
+        if(x.amenities.access_to_swimming_Pool_Jacuzzi){
+            setSwim("Yes")
+        }
+        if(x.amenities.daily_parking){
+            setSwim("Yes")
+        }
+        if(x.amenities.all_meals_included){
+            setSwim("Yes")
+        }
+        // AuthService.getBookingDetails().then(
+        //         (x) => {
+        //             setCurr(x)
+        //              
+        //         },
+        //         error => {
+        //             const resMessage =
+        //             (error.response &&
+        //             error.response.data &&
+        //             error.response.data.message) ||
+        //             error.message ||
+        //             error.toString();
+        //         }
+        //     )
+     }, [])
+
+
+
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [breakfast, setCheckedBF] = React.useState(false);
@@ -117,11 +180,6 @@ function Details() {
       }
     }
 
-
-
-
-
-
     const selectionRange = {
         startDate: startDate,
         endDate: endDate,
@@ -132,30 +190,67 @@ function Details() {
         setEndDate(ranges.selection.endDate);
     }
 
-    const book = () => {
-      console.log(Date())
-      var g1 = new Date();
-      if(startDate.getTime() < g1.getTime()){
-          window.alert("Kindly select the later dates")
-          return
-      }
-      AuthService.getBookingConfirmation(room, startDate, endDate, breakfast, fit, pool, park, meals, rooms, child, adult).then(
-          () => { history.push('/') 
-          //window.location.reload(false);
-          },
-          error => {
-              const resMessage =
-              (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-              error.message ||
-              error.toString();
-          }
-      )
-  }
+    const UpdateBook = () => {
+        var g1 = new Date();
+        if(startDate.getTime() < g1.getTime()){
+            window.alert("Kindly select the later dates")
+            return
+        }
+        AuthService.getUserUpdate(room, startDate, endDate, breakfast, fit, pool, park, meals, rooms, child, adult).then(
+            () => { history.push('/') 
+            //window.location.reload(false);
+            },
+            error => {
+                const resMessage =
+                (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+                error.message ||
+                error.toString();
+            }
+        )
+    }
 
   return (
     <div>
+        <div className = "card_update">
+        <h2>Current Booking</h2>
+        <br></br>
+        <div className = "cardupdate__info">
+        <div>
+        <h4>From</h4>
+        {curr.fromDate}
+        </div>
+        <div>
+        <h4>To</h4>
+        {curr.toDate}
+        </div>
+        <div>
+        <h4>Breakfast</h4>
+        {breakfast_book}
+        </div>
+        <div>
+        <h4>Fitness</h4>
+        {fit_book}
+        </div>
+        <div>
+        <h4>Pool</h4>
+        {swim_book}
+        </div>
+        <div>
+        <h4>Parking</h4>
+        {park_book}
+        </div>
+        <div>
+        <h4>All Meals</h4>
+        {meal_book}
+        </div>
+        </div>
+        </div>
+        <div className = "card_update">
+        <h2>Please Update your booking</h2>
+        <br></br>
+        <br></br>
         <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
         <h3>Amenities <RoomServiceIcon /></h3>
         <input type="checkbox" checked={breakfast} onChange={setCheckedOne}/> Daily Continental Breakfast
@@ -208,22 +303,12 @@ function Details() {
         <br></br>
         <br></br>
         <br></br>
-
-      <Button variant='outlined' onClick={book} >Confirm</Button>
+        <span>
+        <Button onClick = {UpdateBook}>Confirm</Button>
+        </span>
+        </div>
     </div>
   )
 }
 
-const Dropdown = ({ label, value, options, onChange }) => {
-  return (
-    <label>
-      <select value={value} onChange={onChange}>
-        {options.map((option) => (
-          <option value={option.value}>{option.label}</option>
-        ))}
-      </select>
-    </label>
-  );
-};
-
-export default Details
+export default Update
