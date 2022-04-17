@@ -43,20 +43,19 @@ public class BookingDetails implements Serializable {
 	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
 	private String emailID;
 	// @Pattern(regexp="(^$|[0-9]{10})")
-	@NotBlank(message = "phoneNumber is mandatory")
-	private String phoneNumber;
+	/*
+	 * @NotBlank(message = "phoneNumber is mandatory") private String phoneNumber;
+	 */
 	@NotBlank(message = "roomType is mandatory")
 	private String roomType;
-	@Size(min=1,max =4)
+	//@Size(min=1,max =4)
 	private Integer number_of_adults;
-	@Size(min=0,max =4)
+	//@Size(min=0,max =4)
 	private Integer number_of_children;
-	@NotBlank(message = "fromDate is mandatory")
 	private LocalDate fromDate;
-	@NotBlank(message = "toDate is mandatory")
 	private LocalDate toDate;
-	private int rewardpoints;
-	@NotBlank(message = "Number of Rooms is mandatory")
+	private double rewardpoints;
+	@NotNull(message = "Number of Rooms is mandatory")
 	private int numberOfRooms;
 	private Amenities amenities;
 
@@ -84,14 +83,12 @@ public class BookingDetails implements Serializable {
 		this.emailID = emailID;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
+	/*
+	 * public String getPhoneNumber() { return phoneNumber; }
+	 * 
+	 * public void setPhoneNumber(String phoneNumber) { this.phoneNumber =
+	 * phoneNumber; }
+	 */
 	public String getRoomType() {
 		return roomType;
 	}
@@ -161,14 +158,14 @@ public class BookingDetails implements Serializable {
 	/**
 	 * @return the rewardpoints
 	 */
-	public int getRewardpoints() {
+	public double getRewardpoints() {
 		return rewardpoints;
 	}
 
 	/**
 	 * @param rewardpoints the rewardpoints to set
 	 */
-	public void setRewardpoints(int rewardpoints) {
+	public void setRewardpoints(double rewardpoints) {
 		this.rewardpoints = rewardpoints;
 	}
 

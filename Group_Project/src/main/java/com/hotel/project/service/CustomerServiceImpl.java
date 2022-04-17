@@ -37,7 +37,7 @@ public class CustomerServiceImpl  implements UserDetailsService{
 	    return customerRepository.findByEmail(email);
 	}
 
-	public void saveUser(Customer customer) {
+	public void saveCustomer(Customer customer) {
 		customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
 	    //customer.setEnabled(true);
 	    Role userRole = roleRepository.findByRole("ADMIN");

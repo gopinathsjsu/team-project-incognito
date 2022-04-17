@@ -90,6 +90,8 @@ public class HotelServiceImpl implements HotelService {
 
 	public ResponseEntity<BookingDetails> updateBookingDetails(String reservationID, BookingDetails bookingDetails) {
 
+		dateRangeValidator.validateDateRange(bookingDetails);
+
 		BookingDetails updatedetails = bookingRepository.getDetailsByReservationID(reservationID);
 
 		if (updatedetails != null) {
@@ -121,10 +123,10 @@ public class HotelServiceImpl implements HotelService {
 		if (bookingDetails.getToDate() != null) {
 			updateddetails.setToDate(bookingDetails.getToDate());
 		}
-		if(bookingDetails.getNumber_of_adults()!=null) {
+		if (bookingDetails.getNumber_of_adults() != null) {
 			updateddetails.setNumber_of_adults(bookingDetails.getNumber_of_adults());
 		}
-		if(bookingDetails.getNumber_of_children()!=null) {
+		if (bookingDetails.getNumber_of_children() != null) {
 			updateddetails.setNumber_of_children(bookingDetails.getNumber_of_children());
 		}
 		if (bookingDetails.getAmenities() != null) {

@@ -5,6 +5,8 @@ import static org.springframework.http.ResponseEntity.ok;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,7 +27,7 @@ import com.hotel.project.security.JwtTokenGenerator;
 import com.hotel.project.service.CustomerServiceImpl;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000", maxAge = 40000)
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 40000)
 @RequestMapping("/api/auth")
 public class AuthenticationController {
 
@@ -36,18 +38,19 @@ public class AuthenticationController {
 	JwtTokenGenerator jwtTokenGenerator;
 
 	@Autowired
-	CustomerRepository users;
+	CustomerRepository customerRepository;
 
 	@Autowired
 	private CustomerServiceImpl customerService;
 
 	@SuppressWarnings("rawtypes")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/signin")
-	public ResponseEntity login(@RequestBody CustomerAuthenticationRequest data) {
+	public ResponseEntity signin(@Valid @RequestBody CustomerAuthenticationRequest data) {
 		try {
 			String username = data.getEmail();
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
-			String token = jwtTokenGenerator.createToken(username, this.users.findByEmail(username).getRoles());
+			String token = jwtTokenGenerator.createToken(username, this.customerRepository.findByEmail(username).getRoles());
 			Map<Object, Object> model = new HashMap<>();
 			model.put("username", username);
 			model.put("token", token);
@@ -58,14 +61,14 @@ public class AuthenticationController {
 	}
 
 	@SuppressWarnings("rawtypes")
-	//@CrossOrigin(origins = "http://192.168.137.171:3000")
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/signup")
-	public ResponseEntity register(@RequestBody Customer customer) {
+	public ResponseEntity signup(@Valid @RequestBody Customer customer) {
 		Customer customerexists = customerService.findUserByEmail(customer.getEmail());
 		if (customerexists != null) {
-			throw new HotelBusinessException("User with email: " + customer.getEmail() + " already exists. Please Login");
+			throw new HotelBusinessException("Customer with email: " + customer.getEmail() + " already exists. Please Login");
 		}
-		customerService.saveUser(customer);
+		customerService.saveCustomer(customer);
 		Map<Object, Object> model = new HashMap<>();
 		model.put("message", "User signup successfull");
 		return ok(model);
