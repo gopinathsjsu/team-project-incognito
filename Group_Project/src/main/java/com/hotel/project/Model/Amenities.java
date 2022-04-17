@@ -2,11 +2,11 @@ package com.hotel.project.Model;
 
 public class Amenities {
 
-	private boolean daily_continental_breakfast;
-	private boolean access_to_fitness_room;
-	private boolean access_to_swimming_Pool_Jacuzzi;
-	private boolean daily_parking;
-	private boolean all_meals_included;
+	private boolean daily_continental_breakfast = false;
+	private boolean access_to_fitness_room = false;
+	private boolean access_to_swimming_Pool_Jacuzzi = false;
+	private boolean daily_parking = false;
+	private boolean all_meals_included = false;
 
 	public boolean isDaily_continental_breakfast() {
 		return daily_continental_breakfast;

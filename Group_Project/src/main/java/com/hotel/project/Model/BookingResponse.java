@@ -19,7 +19,7 @@ public class BookingResponse {
 	private LocalDate toDate;
 	private Amenities amenities;
 	private int price;
-	private int rewardPoints;
+	private double rewardPoints;
 	private int numberOfRooms;
 
 	public String getReservationID() {
@@ -137,14 +137,14 @@ public class BookingResponse {
 	/**
 	 * @return the rewardPoints
 	 */
-	public int getRewardPoints() {
+	public double getRewardPoints() {
 		return rewardPoints;
 	}
 
 	/**
 	 * @param rewardPoints the rewardPoints to set
 	 */
-	public void setRewardPoints(int rewardPoints) {
+	public void setRewardPoints(double rewardPoints) {
 		this.rewardPoints = rewardPoints;
 	}
 

@@ -1,5 +1,6 @@
 package com.hotel.project.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -19,7 +20,8 @@ public interface BookingRepository extends MongoRepository<BookingDetails, Strin
 
 	BookingDetails save(Optional<BookingDetails> details);
 
-	//BookingDetails save(BookingDetails details);
+	@Query("{emailID :?0}")
+	List<BookingDetails> findByEmail(String emailID);
 
 
 }
