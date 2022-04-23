@@ -8,25 +8,27 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Axios from 'axios';
+import AuthService from '../User_auth';
 const Signup = () => {
     const [userName, setuserNameReg] = useState("");
     const [userPassword, setuserPassword] = useState("");
     const [userGender, setGender] = useState("");
     const [userPhoneno, setPhoneNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [succesful, setSuccesfull] = useState(false);
 
     const paperStyle = { padding: '30px 20px', width: 300, margin: "20px auto" }
     const headerStyle = { margin: 0 }
     const avatarStyle = { backgroundColor: '#ff7779' }
     const marginTop = { marginTop: 5 }
+    
+
     const register = () => {
-        Axios.post("http://localhost:8086/api/auth/register",{
-            username: userName,
-            password : userPassword,
-            gender : userGender,
-            phoneno : userPhoneno
-            }).then((response) => {
-            console.log(response)
-        })}
+        AuthService.register(userName, email, userPassword, userPhoneno).then(
+            setSuccesfull(true)
+        )
+    }
+
     return (
         <Grid>
             <Paper elevation={20} style={paperStyle}>
@@ -38,8 +40,8 @@ const Signup = () => {
                     <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
                 </Grid>
                 <form>
-                    <TextField fullWidth label='Name' placeholder="Enter your name" />
-                    <TextField fullWidth label='Email' onChange = {(e)=> {setuserNameReg(e.target.value)}} placeholder="Enter your email" />
+                    <TextField fullWidth label='Name' onChange = {(e)=> {setuserNameReg(e.target.value)}} placeholder="Enter your name" />
+                    <TextField fullWidth label='Email' onChange = {(e)=> {setEmail(e.target.value)}} placeholder="Enter your email" />
                     <FormControl component="fieldset" style={marginTop}>
                         <FormLabel component="legend">Gender</FormLabel>
                         <RadioGroup aria-label="gender" name="gender" onChange = {(e)=> {setGender(e.target.value)}} style={{ display: 'initial' }}>
