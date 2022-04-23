@@ -90,7 +90,7 @@ public class BookingResponseDetailsBuilder {
 		bookingResponse.setToDate(bookingDetails.getToDate());
 		bookingResponse.setNumber_of_adults(bookingDetails.getNumber_of_adults());
 		bookingResponse.setNumber_of_children(bookingDetails.getNumber_of_children());
-		bookingResponse.setPhoneNumber(bookingDetails.getPhoneNumber());
+		//bookingResponse.setPhoneNumber(bookingDetails.getPhoneNumber());
 		bookingResponse.setNumberOfRooms(bookingDetails.getNumberOfRooms());
 		bookingResponse.setRewardPoints(bookingDetails.getRewardpoints());
 
