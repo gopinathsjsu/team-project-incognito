@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './bookingdetails.css';
 import Bookcard from './Bookcard';
-
+import AuthService from '../User_auth';
+import { Header } from '..'
 
 
 function Bookingdetails() {
@@ -55,35 +56,48 @@ function Bookingdetails() {
             "desc": "Comfortable private places, with room for friends or family.",
         }
      ]
-
+     let room = "Single Room"
     useEffect(() => {
-        setData(cars)
+        //setData(cars)
 
-        // AuthService.getBookingDetails(userName, userPassword).then(
-        //     (x) => {
-        //     setData(x)
-        //     },
-        //     error => {
-        //         const resMessage =
-        //         (error.response &&
-        //         error.response.data &&
-        //         error.response.data.message) ||
-        //         error.message ||
-        //         error.toString();
-        //         setLoading(false)
-        //     }
-        // )
-
+        AuthService.getBookingDetails().then(
+            (x) => {
+              console.log(x.data)
+              if(x.data.roomType === "Single_Room"){
+                room = "Single Room"
+              }
+              else if(x.data.roomType === "Family_Lounge"){
+                room = "Family Lounge"
+              }
+              else if(x.data.roomType === "double_room"){
+                room = "Double Room"
+              }
+              else{
+                room = "Suite"
+              }
+            setData(x.data)
+            },
+            error => {
+                const resMessage =
+                (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+                error.message ||
+                error.toString();
+            }
+        )
      }, [])
      
-    const users=userData.map((data,id)=>{
+
+    const users=userData.map((dataU)=>{
         return (
+         
           <Bookcard
-                 src={data.src}
-                 title={data.location}
-                 description={data.desc}
+                 src={room}
+                 title={dataU.fromDate}
+                 to = {dataU.toDate}
+                 description={dataU.reservationID}
             />
-            
         )
         
     })
@@ -101,8 +115,11 @@ function Bookingdetails() {
     // }
 
   return (
+    <div>
+      <Header />
     <div className='book__section'>
          {users}
+    </div>
     </div>
   )
 }

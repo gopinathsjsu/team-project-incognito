@@ -1,23 +1,18 @@
 import axios from "axios";
-const API_URL = "api/auth/";
-const API_book = "hotel-booking/";
+const API_URL = "/api/auth/";
+const API_book = "8080/hotel-booking/";
 const API_rewards = ""
-
-//axios.defaults.proxy.host = "http://localhost"
-//axios.defaults.proxy.port = "8086"
-
 class AuthService {
-  login(email, password) {
+  
+  login(username, password) {
     //return Promise.resolve(localStorage.setItem("user", "Shreyansh"))
-    console.log("Getting booking")
     return axios
       .post(API_URL + "signin", {
-        email,
+        username,
         password
       })
       .then(response => {
         if (response) {
-          console.log(response.data.username)
           localStorage.setItem("user", JSON.stringify(response.data.username));
           localStorage.setItem("token", JSON.stringify(response.data.token));
           
@@ -29,17 +24,12 @@ class AuthService {
     return Promise.resolve(localStorage.removeItem('user'));
   }
 
-  register( username, email, password, phoneNumber) {
-    console.log(username)
+  register(username, email, password, phoneNumber) {
     return axios.post(API_URL + "signup", {
       username,
       email,
       password,
-      phoneNumber,
-    }).then(response => {
-      console.log(response);
-    }).catch(e=> {
-      console.log(e);
+      phoneNumber
     });
   }
 
@@ -49,10 +39,18 @@ class AuthService {
 
   getBalanceUser(){
     //return Promise.resolve(JSON.stringify({"balance":1000}));
-    let x = localStorage.getItem('user')
-    let email = x.username;
+    let email = localStorage.getItem('user');
+    email = email.replace(/\s"/g, '');
+    let token = localStorage.getItem('token');
+    token = token.replace(/\s"/g, '')
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+token,
+    }
     return axios
-      .post(API_rewards + "rewards/"+email)
+      .post(API_rewards + "rewards/"+email,{
+        headers:headers
+      })
        .then(response => {
          if (response.data.accessToken) {
            localStorage.setItem("balance", JSON.stringify(response.data));
@@ -62,76 +60,57 @@ class AuthService {
   }
 
   getBookingDetails(){
-    let x = localStorage.getItem('user')
-    let email = x;
-    email = email.replace(/\"/g,'')
+    let email = localStorage.getItem('user');
+    email = email.replace(/\s"/g, '');
     let token = localStorage.getItem('token');
-    token = token.replace(/\"/g,'')
-    console.log(token)
-    let yourConfig = {
-      headers: {
-          'Content-Type' : 'application/json',
-         'Authorization': "Bearer " + token,
-      }
-   }
+    token = token.replace(/\s"/g, '')
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+token,
+    }
     return axios
-        .get(API_book+"getBooking/"+ email, yourConfig)
+        .post(API_book + "getBooking/"+email, {
+          headers:headers
+        })
           .then(response => {
-                  console.log(response)
-                   return response;
+                   return JSON.stringify(response.data);
           })
   }
 
   getBookingConfirmation(roomType, fromDate, toDate, daily_continental_breakfast, access_to_fitness_room, access_to_swimming_Pool_Jacuzzi, daily_parking, all_meals_included, numberOfRooms, number_of_children, number_of_adults){
-    let x = localStorage.getItem('user')
-    let email = x;
-    email = email.replace(/\"/g,'')
+    let email = localStorage.getItem('user');
+    email = email.replace(/\s"/g, '');
     let token = localStorage.getItem('token');
-    token = token.replace(/\"/g,'')
-    let emailID = email
-    console.log(fromDate)
-    var date = new Date(fromDate.getTime());
-    date.setHours(0, 0, 0, 0);
-    console.log(date)
-    let yourConfig = {
-      headers: {
-          'Content-Type' : 'application/json',
-         'Authorization': "Bearer " + token,
-      },
-        emailID,
-        roomType,
-        fromDate,
-        toDate,
-        numberOfRooms,
-        number_of_children,
-        number_of_adults,
-        "amenities": {
-        daily_continental_breakfast,
-        access_to_fitness_room,
-        access_to_swimming_Pool_Jacuzzi,
-        daily_parking,
-        all_meals_included
-      }
-   }
+    token = token.replace(/\s"/g, '')
     console.log("Welcome")
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+token,
+    }
     return axios
-       .post(API_book + "createBooking", {
-        emailID,
+       .post(API_URL + "createBooking",{
+        headers:headers
+       },{
+        //"emailID": "ravi@gmail123.com",
+        email,
+        //"phoneNumber": "+1 9876543211",
+        //"roomType": "family",
         roomType,
+        //"fromDate": "2022-11-21",
         fromDate,
+        //"toDate": "2022-01-29",
         toDate,
         numberOfRooms,
         number_of_children,
         number_of_adults,
-        "amenities": {
+        amenities: {
         daily_continental_breakfast,
         access_to_fitness_room,
         access_to_swimming_Pool_Jacuzzi,
         daily_parking,
         all_meals_included
       }
-       }, yourConfig
-        )
+      })
       .then(response => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
@@ -142,53 +121,39 @@ class AuthService {
 
   getUserUpdate(roomType, fromDate, toDate, daily_continental_breakfast, access_to_fitness_room, access_to_swimming_Pool_Jacuzzi, daily_parking, all_meals_included, numberOfRooms, number_of_children, number_of_adults, bookid)
   {
-    let x = localStorage.getItem('user')
-    let email = x;
-    email = email.replace(/\"/g,'')
+    let email = localStorage.getItem('user');
+    email = email.replace(/\s"/g, '');
     let token = localStorage.getItem('token');
-    token = token.replace(/\"/g,'')
-    let emailID = email
-    console.log(fromDate)
-    var date = new Date(fromDate.getTime());
-    date.setHours(0, 0, 0, 0);
-    let yourConfig = {
-      headers: {
-          'Content-Type' : 'application/json',
-         'Authorization': "Bearer " + token,
-      },
-        emailID,
-        roomType,
-        fromDate,
-        toDate,
-        numberOfRooms,
-        number_of_children,
-        number_of_adults,
-        "amenities": {
-        daily_continental_breakfast,
-        access_to_fitness_room,
-        access_to_swimming_Pool_Jacuzzi,
-        daily_parking,
-        all_meals_included
-      }
-   }
+    token = token.replace(/\s"/g, '')
+    console.log("Welcome")
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+token,
+    }
     return axios
-       .put(API_book + "updateBooking/"+ bookid, {
-        emailID,
+       .post(API_URL + "updateBooking/"+ bookid,{
+        headers:headers
+       },{
+        //"emailID": "ravi@gmail123.com",
+        email,
+        //"phoneNumber": "+1 9876543211",
+        //"roomType": "family",
         roomType,
+        //"fromDate": "2022-11-21",
         fromDate,
+        //"toDate": "2022-01-29",
         toDate,
         numberOfRooms,
         number_of_children,
         number_of_adults,
-        "amenities": {
+        amenities: {
         daily_continental_breakfast,
         access_to_fitness_room,
         access_to_swimming_Pool_Jacuzzi,
         daily_parking,
         all_meals_included
       }
-       },yourConfig
-       )
+      })
       .then(response => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
@@ -201,7 +166,6 @@ class AuthService {
       //var x = JSON.parse(localStorage.getItem('user'));
       var x = JSON.stringify(localStorage.getItem('user'))
       var y = localStorage.getItem('user');
-      console.log("Valid User")
       console.log(y)
       if(y == null){
           return false

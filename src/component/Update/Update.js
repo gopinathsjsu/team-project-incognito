@@ -196,7 +196,7 @@ function Update() {
             window.alert("Kindly select the later dates")
             return
         }
-        AuthService.getUserUpdate(room, startDate, endDate, breakfast, fit, pool, park, meals, rooms, child, adult).then(
+        AuthService.getUserUpdate(room, startDate, endDate, breakfast, fit, pool, park, meals, rooms, child, adult, query).then(
             () => { history.push('/') 
             //window.location.reload(false);
             },
