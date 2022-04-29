@@ -15,6 +15,7 @@ import com.hotel.project.Model.BookingDetails;
 import com.hotel.project.Model.BookingResponse;
 import com.hotel.project.pricing.ChristmasPricing;
 import com.hotel.project.pricing.PublicHolidayPricing;
+import com.hotel.project.pricing.SummerPricing;
 import com.hotel.project.pricing.WeekDayPricing;
 import com.hotel.project.pricing.WeekendPricing;
 import com.hotel.project.repository.BookingRepository;
@@ -26,6 +27,7 @@ public class BookingResponseDetailsBuilder {
 	public PublicHolidayPricing publicHolidayPricing;
 	public WeekendPricing weekendPricing;
 	public WeekDayPricing weekDayPricing;
+	public SummerPricing summerPricing;
 
 	@Autowired
 	public BookingRepository bookingRepository;
@@ -79,10 +81,13 @@ public class BookingResponseDetailsBuilder {
 		dates.add(Labor_day);
 		dates.add(ThanksGiving_day);
 
-		System.out.println("public holidays" + dates.toString());
+		//System.out.println("public holidays" + dates.toString());
 
 		LocalDate ChristmasStartDate = LocalDate.of(2022, 12, 24);
 		LocalDate ChristmasEndDate = LocalDate.of(2023, 1, 02);
+		
+		LocalDate SummerStartDate = LocalDate.of(2022, 06, 01);
+		LocalDate SummerEndDate = LocalDate.of(2023, 07, 30);
 
 		bookingResponse.setCustomerName(bookingDetails.getCustomerName());
 		bookingResponse.setEmailID(bookingDetails.getEmailID());
@@ -97,18 +102,24 @@ public class BookingResponseDetailsBuilder {
 		if (dates.contains(bookingDetails.getFromDate()) || dates.contains(bookingDetails.getToDate())) {
 
 			bookingResponse.setPrice(publicHolidayPricing.getPricing(bookingDetails.getRoomType()));
-			System.out.println("print public holiday");
+			//System.out.println("print public holiday");
 		} else if ((bookingDetails.getFromDate().isAfter(ChristmasStartDate))
 				&& (bookingDetails.getToDate().isBefore(ChristmasEndDate))) {
 
-			System.out.println("christmas");
+			//System.out.println("christmas");
 			bookingResponse.setPrice(christmasPricing.getPricing(bookingDetails.getRoomType()));
 		} else if (startDate == DayOfWeek.SATURDAY || startDate == DayOfWeek.SUNDAY || endDate == DayOfWeek.SATURDAY
 				|| endDate == DayOfWeek.SUNDAY) {
-			System.out.println("weekend");
+			//System.out.println("weekend");
 			bookingResponse.setPrice(weekendPricing.getPricing(bookingDetails.getRoomType()));
-		} else {
-			System.out.println("weekday");
+			
+		}else if ((bookingDetails.getFromDate().isAfter(SummerStartDate))
+				&& (bookingDetails.getToDate().isBefore(SummerEndDate))) {
+
+			//System.out.println("summer");
+			bookingResponse.setPrice(summerPricing.getPricing(bookingDetails.getRoomType()));
+		}else {
+			//System.out.println("weekday");
 			bookingResponse.setPrice(weekDayPricing.getPricing(bookingDetails.getRoomType()));
 		}
 
@@ -121,16 +132,16 @@ public class BookingResponseDetailsBuilder {
 		if (bookingDetails.getRewardpoints() > 300 && bookingDetails.getRewardpoints() > 0) {
 
 			int discountPrice = bookingResponse.getPrice() * 5 / 100;
-			System.out.println(discountPrice);
+			//System.out.println(discountPrice);
 			bookingResponse.setPrice(bookingResponse.getPrice() - discountPrice);
 
 		} else if (bookingDetails.getRewardpoints() < 700 && bookingDetails.getRewardpoints() > 300) {
 			int discountPrice = bookingResponse.getPrice() * 10 / 100;
-			System.out.println(discountPrice);
+			//System.out.println(discountPrice);
 			bookingResponse.setPrice(bookingResponse.getPrice() - discountPrice);
 		} else {
 			int discountPrice = bookingResponse.getPrice() * 15 / 100;
-			System.out.println(discountPrice);
+			//System.out.println(discountPrice);
 			bookingResponse.setPrice(bookingResponse.getPrice() - discountPrice);
 		}
 		bookingResponse.setRoomType(bookingDetails.getRoomType());

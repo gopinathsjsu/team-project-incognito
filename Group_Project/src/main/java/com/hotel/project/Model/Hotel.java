@@ -1,5 +1,7 @@
 package com.hotel.project.Model;
 
+import javax.validation.constraints.Size;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,11 +20,9 @@ public class Hotel {
 	 */
 	/*
 	 * @NonNull
-	 * 
-	 * @Size(min=2, max=30)
 	 */
+	@Size(min=2, max=30)
 	private String hotelName;
-	
 	@Id
 	private String id;
 	private String location;

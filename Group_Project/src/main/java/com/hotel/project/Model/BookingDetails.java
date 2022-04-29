@@ -37,8 +37,8 @@ public class BookingDetails implements Serializable {
 	@Id
 	private String reservationID;
 
-	@NotNull
-	@NotBlank(message = "Name is mandatory")
+	//@NotNull
+	//@NotBlank(message = "Name is mandatory")
 	private String customerName;
 	@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
 	private String emailID;
@@ -48,9 +48,9 @@ public class BookingDetails implements Serializable {
 	 */
 	@NotBlank(message = "roomType is mandatory")
 	private String roomType;
-	//@Size(min=1,max =4)
+	@Size(min=1,max =4)
 	private Integer number_of_adults;
-	//@Size(min=0,max =4)
+	@Size(min=0,max =4)
 	private Integer number_of_children;
 	private LocalDate fromDate;
 	private LocalDate toDate;
