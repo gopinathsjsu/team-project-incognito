@@ -3,6 +3,7 @@ package com.hotel.project.Model;
 import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
@@ -30,6 +31,7 @@ public class Customer {
 	private String password;
 	
 	@NotBlank(message = "phoneNumber is mandatory")
+	@Pattern(regexp="(^$|[0-9]{10})", message = "should be min of 10 digits")
 	private String phoneNumber;
 
 
