@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import AuthService from '../User_auth';
 
-function Modal(price, id) {
+function Modal(price, res) {
   const history = useHistory();
 
   const Confirm = () =>{
@@ -12,7 +12,9 @@ function Modal(price, id) {
   }
 
   const Cancel = () => {
-    AuthService.getCancelBooking(id).then(
+    console.log("Cancelling")
+    console.log(res)
+    AuthService.getCancelBooking(res.res).then(
       () => { 
        history.push('/') 
           
