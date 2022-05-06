@@ -60,7 +60,7 @@ function Bookingdetails() {
      let room = "Single Room"
      useEffect(() => {
          //setData(cars)
- 
+         console.log("Updated")
          AuthService.getBookingDetails().then(
              (x) => {
                   console.log(x.data)

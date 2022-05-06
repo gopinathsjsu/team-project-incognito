@@ -69,9 +69,7 @@ function Employee() {
             <div className="item">
 
               <div style={{ marginLeft: "10px" }} className="item-details">
-                  
-                <h5 style={{marginTop:"5px" }}> Customer Name: </h5>
-                <p className="card-title"> {pro.customerName} </p>
+                
                 <h5 style={{marginTop:"5px" }}> Check-in Date: </h5>
                 <p className="card-title">  {pro.fromDate} </p>
                 <h5 style={{marginTop:"5px" }}> Expected Checkout Date:</h5>

@@ -8,7 +8,8 @@ import RoomServiceIcon from '@mui/icons-material/RoomService';
 import BedroomParentIcon from '@mui/icons-material/BedroomParent';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
-import { Header } from '..'
+import { Header } from '..';
+import { Modal } from '..';
 
 function Update() {
 
@@ -24,6 +25,8 @@ function Update() {
     const[swim_book, setSwim] = useState("No");
     const[park_book, setPark] = useState("No");
     const[meal_book, setMeal] = useState("No");
+    const [price, setPrice] = useState("");
+    const [modal, setModal] = useState(false)
 
     const { search } = useLocation()
     const {query} = queryString.parse(search)
@@ -191,6 +194,10 @@ function Update() {
         setEndDate(ranges.selection.endDate);
     }
 
+    const toggleModal = () => {
+      setModal(!modal)
+    };
+
     const UpdateBook = () => {
         var g1 = new Date();
         if(startDate.getTime() < g1.getTime()){
@@ -198,7 +205,13 @@ function Update() {
             return
         }
         AuthService.getUserUpdate(room, startDate, endDate, breakfast, fit, pool, park, meals, rooms, child, adult, query).then(
-            () => { history.push('/') 
+            (x) => { 
+              console.log("Wasssssssssup")
+              console.log(x.price)
+              setPrice(x.price, x.reservationID);
+              toggleModal()
+              
+              history.push('/booked') 
             //window.location.reload(false);
             },
             error => {
@@ -307,6 +320,7 @@ function Update() {
         <br></br>
         <span>
         <Button onClick = {UpdateBook}>Confirm</Button>
+        {modal && <Modal price = { price }/>}
         </span>
         </div>
     </div>
