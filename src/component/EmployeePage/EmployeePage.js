@@ -108,6 +108,13 @@ function Employee() {
           <div>
             {users}
           </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <Button type='submit' variant='contained' onClick ={newHotel} color='#ff7779'>New Hotel</Button>
         </div>
         </div>
