@@ -50,7 +50,7 @@ const Login=()=>{
                 window.alert("Enter correct email/password")
                 console.log('Error', error.message);
             }
-            console.log(error.config);
+            console.log(error.response);
         });
     }
 

@@ -6,7 +6,6 @@ import AuthService from '../User_auth';
 
 function Modal(price, res) {
   const history = useHistory();
-
   const Confirm = () =>{
       history.push('/')
   }
@@ -35,12 +34,20 @@ function Modal(price, res) {
       console.log(error.config);
   });
   }
+
+  let button = <h2></h2>
+  if (price < 0) {
+    button = <h2>Your will be refunded { Math.abs(price.price) } </h2>;
+  } else {
+    button = <h2>Your new Price is { Math.abs(price.price) } </h2>;
+  }
+
   return (
     <div className="modal">
           <div className="overlay"></div>
           <div className="modal-content">
             <h2>Thank you for you booking</h2>
-            <h2>Your total cost is { price.price } </h2>
+            {button}
             <Button className="btn_modal" onClick = {Confirm}>
               Book New
             </Button>
