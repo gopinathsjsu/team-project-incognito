@@ -28,7 +28,7 @@
  * FrontEnd : Shreyansh, Mounica, Preethi
  * Backend : Ravindar
  * Integration of Backend and Frontend : Shreyansh, Ravindar
- * Deployment : Shreyansh , Rabindar, Mounica, Preethi
+ * Deployment : Shreyansh , Ravindar, Mounica, Preethi
  * Documentation : Mounica, Preethi, Shreyansh, Ravindar
 
 # XP Core Values:
