@@ -40,13 +40,15 @@
 
 # Sprint Sheet:
 
-[Sprint Sheet](https://github.com/gopinathsjsu/team-project-incognito/blob/main/Documentation/XP_Core_Values.md)
+[Sprint Sheet](https://github.com/gopinathsjsu/team-project-incognito/blob/main/Documentation/Scrum_Journal_202.xlsx)
 
 [Burndown Chart](https://docs.google.com/spreadsheets/d/12HDOMYoLC3ENJTQOy0CME6LnWqeNuzJCaCU8Bj9qWb8/edit#gid=1503773425)
 
 [Project Board](https://trello.com/b/PjHUdO26/weeklyprogresscmpe202)
 
 # Project Journal:
+
+
 
 # UI WireFrame
 
