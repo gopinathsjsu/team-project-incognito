@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PublicHolidayPricing implements Pricing {
 	
-	int price = 0;
+	int price ;
 
 	@Override
 	public int getPricing(String roomType) {
