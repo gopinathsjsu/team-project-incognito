@@ -4,7 +4,7 @@
 
 ### 1. What tasks did I work on?
 
-Find details and information about Backend tech Stack suitable for the project and Finalized the table structure for the Database.
+Find details and information about Backend tech Stack suitable for the project and finalized the design & architecture for backend and middleware and table structure for the Database.
 
 ### 2. What am I planning to work on next?
 
