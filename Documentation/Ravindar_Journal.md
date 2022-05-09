@@ -48,11 +48,11 @@ None.
 
 ### 1. What tasks did I work on?
 
-Integrated the backend with the frontend and created a search and update page, integrated with backend using auth.js file. Validate integration with backend for few completed pages, created a rewards page
+completed Delete booking, Reward points logic, Field validations and testing and check issues in integration with frontend.
 
 ### 2. What am I planning to work on next?
 
-Validate integration with frontend and modification to api's and work on deployment on cloud.
+Validate integration with frontend and modification to api's and work on deployment on AWS cloud.
 
 ### 3. What tasks blockers did I have?
 
@@ -67,7 +67,7 @@ Deployed the applicaiton on AWS cloud and checked the complete working of the ap
 
 ### 2. What am I planning to work on next?
 
-Giving the demo presentation for the final. and preparing test cases for the demo.
+Giving the demo presentation for the final and preparing test cases for the demo.
 
 ### 3. What tasks blockers did I have?
 
