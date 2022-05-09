@@ -1,6 +1,5 @@
 package com.hotel.project.response;
 
-import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
@@ -34,12 +33,13 @@ public class BookingResponseDetailsBuilder {
 
 	@Autowired
 	public BookingResponseDetailsBuilder(ChristmasPricing christmasPricing, PublicHolidayPricing publicHolidayPricing,
-			WeekendPricing weekendPricing, WeekDayPricing weekDayPricing) {
+			WeekendPricing weekendPricing, WeekDayPricing weekDayPricing,SummerPricing summerPricing) {
 		super();
 		this.christmasPricing = christmasPricing;
 		this.publicHolidayPricing = publicHolidayPricing;
 		this.weekendPricing = weekendPricing;
 		this.weekDayPricing = weekDayPricing;
+		this.summerPricing=summerPricing;
 	}
 
 	/* saving all the public holidays */
@@ -81,13 +81,13 @@ public class BookingResponseDetailsBuilder {
 		dates.add(Labor_day);
 		dates.add(ThanksGiving_day);
 
-		//System.out.println("public holidays" + dates.toString());
+		// System.out.println("public holidays" + dates.toString());
 
 		LocalDate ChristmasStartDate = LocalDate.of(2022, 12, 24);
 		LocalDate ChristmasEndDate = LocalDate.of(2023, 1, 02);
-		
+
 		LocalDate SummerStartDate = LocalDate.of(2022, 06, 01);
-		LocalDate SummerEndDate = LocalDate.of(2023, 07, 30);
+		LocalDate SummerEndDate = LocalDate.of(2022, 07, 30);
 
 		bookingResponse.setCustomerName(bookingDetails.getCustomerName());
 		bookingResponse.setEmailID(bookingDetails.getEmailID());
@@ -95,57 +95,63 @@ public class BookingResponseDetailsBuilder {
 		bookingResponse.setToDate(bookingDetails.getToDate());
 		bookingResponse.setNumber_of_adults(bookingDetails.getNumber_of_adults());
 		bookingResponse.setNumber_of_children(bookingDetails.getNumber_of_children());
-		//bookingResponse.setPhoneNumber(bookingDetails.getPhoneNumber());
+		// bookingResponse.setPhoneNumber(bookingDetails.getPhoneNumber());
 		bookingResponse.setNumberOfRooms(bookingDetails.getNumberOfRooms());
 		bookingResponse.setRewardPoints(bookingDetails.getRewardpoints());
 
 		if (dates.contains(bookingDetails.getFromDate()) || dates.contains(bookingDetails.getToDate())) {
 
-			bookingResponse.setPrice(publicHolidayPricing.getPricing(bookingDetails.getRoomType()));
-			//System.out.println("print public holiday");
+			bookingResponse.setPrice(bookingDetails.getNumberOfRooms()
+					* (publicHolidayPricing.getPricing(bookingDetails.getRoomType())));
+			System.out.println("print public holiday");
+			System.out.println(bookingResponse.getPrice());
 		} else if ((bookingDetails.getFromDate().isAfter(ChristmasStartDate))
 				&& (bookingDetails.getToDate().isBefore(ChristmasEndDate))) {
 
-			//System.out.println("christmas");
-			bookingResponse.setPrice(christmasPricing.getPricing(bookingDetails.getRoomType()));
+			System.out.println("christmas");
+			bookingResponse.setPrice(
+					bookingDetails.getNumberOfRooms() * (christmasPricing.getPricing(bookingDetails.getRoomType())));
 		} else if (startDate == DayOfWeek.SATURDAY || startDate == DayOfWeek.SUNDAY || endDate == DayOfWeek.SATURDAY
 				|| endDate == DayOfWeek.SUNDAY) {
-			//System.out.println("weekend");
-			bookingResponse.setPrice(weekendPricing.getPricing(bookingDetails.getRoomType()));
-			
-		}else if ((bookingDetails.getFromDate().isAfter(SummerStartDate))
+			 System.out.println("weekend");
+			bookingResponse.setPrice(
+					bookingDetails.getNumberOfRooms() * (weekendPricing.getPricing(bookingDetails.getRoomType())));
+
+		} else if ((bookingDetails.getFromDate().isAfter(SummerStartDate))
 				&& (bookingDetails.getToDate().isBefore(SummerEndDate))) {
 
-			//System.out.println("summer");
-			bookingResponse.setPrice(summerPricing.getPricing(bookingDetails.getRoomType()));
-		}else {
-			//System.out.println("weekday");
-			bookingResponse.setPrice(weekDayPricing.getPricing(bookingDetails.getRoomType()));
+			System.out.println("summer");
+			bookingResponse.setPrice(
+					bookingDetails.getNumberOfRooms() * (summerPricing.getPricing(bookingDetails.getRoomType())));
+		} else {
+			 System.out.println("weekday");
+			bookingResponse.setPrice(
+					bookingDetails.getNumberOfRooms() * (weekDayPricing.getPricing(bookingDetails.getRoomType())));
 		}
 
 		/*
-		 * if reward points are more than 300 then customer gets 5% discount, if reward
+		 * if reward points are less than 300 then customer gets 5% discount, if reward
 		 * points are less than 700 n more than 300 then customer gets 10% discount, if
 		 * reward points are more than 700 then customer gets 15% discount, if per one
 		 * booking
 		 */
-		if (bookingDetails.getRewardpoints() > 300 && bookingDetails.getRewardpoints() > 0) {
+		if (bookingDetails.getRewardpoints() <= 300 && bookingDetails.getRewardpoints() > 0) {
 
 			int discountPrice = bookingResponse.getPrice() * 5 / 100;
-			//System.out.println(discountPrice);
-			bookingResponse.setPrice(bookingResponse.getPrice() - discountPrice);
+			System.out.println(discountPrice + "less than 300");
+			bookingResponse.setPrice((bookingResponse.getPrice()) - discountPrice);
 
-		} else if (bookingDetails.getRewardpoints() < 700 && bookingDetails.getRewardpoints() > 300) {
+		} else if (bookingDetails.getRewardpoints() <= 700 && bookingDetails.getRewardpoints() >= 300) {
 			int discountPrice = bookingResponse.getPrice() * 10 / 100;
-			//System.out.println(discountPrice);
-			bookingResponse.setPrice(bookingResponse.getPrice() - discountPrice);
-		} else {
+			System.out.println(discountPrice+ "\"bw 300 and 700\"");
+			bookingResponse.setPrice((bookingResponse.getPrice()) - discountPrice);
+		} else if (bookingDetails.getRewardpoints() >= 700 ) {
 			int discountPrice = bookingResponse.getPrice() * 15 / 100;
-			//System.out.println(discountPrice);
-			bookingResponse.setPrice(bookingResponse.getPrice() - discountPrice);
+			System.out.println(discountPrice+ "bookingDetails.getRewardpoints() > 700 ");
+			bookingResponse.setPrice(( bookingResponse.getPrice()) - discountPrice);
 		}
 		bookingResponse.setRoomType(bookingDetails.getRoomType());
-		bookingResponse.setReservationID(bookingDetails.getReservationID());
+		
 
 		Amenities amenities = new Amenities();
 
@@ -158,7 +164,11 @@ public class BookingResponseDetailsBuilder {
 
 		}
 		bookingResponse.setAmenities(amenities);
-
+		
+		bookingDetails.setPrice(bookingResponse.getPrice());
+		bookingRepository.save(bookingDetails);
+		bookingResponse.setReservationID(bookingDetails.getReservationID());
+		
 		return bookingResponse;
 
 	}

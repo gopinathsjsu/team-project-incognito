@@ -65,19 +65,14 @@ public class CustomerController {
 		return new ResponseEntity<BookingResponse>(bookingResponseDetails, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/getBooking")
-	public List<BookingDetails> getBooking() {
-
-		return hotelservice.getAllBookingDetails();
-	}
-
+	
 	@PutMapping("/updateBooking/{reservationID}")
 	public ResponseEntity<BookingDetails> updateBooking(@Valid @PathVariable("reservationID") String reservationID,
 			@Valid @RequestBody BookingDetails bookingDetails) {
 
-		hotelservice.updateBookingDetails(reservationID, bookingDetails);
+		ResponseEntity<BookingDetails> updatedDetails = hotelservice.updateBookingDetails(reservationID, bookingDetails);
 
-		return new ResponseEntity<BookingDetails>(HttpStatus.OK);
+		return new ResponseEntity<BookingDetails>(updatedDetails.getBody(), HttpStatus.OK);
 
 	}
 	
@@ -102,7 +97,8 @@ public class CustomerController {
 
 			if (!bookingDetails.isEmpty() && bookingDetails != null) {
 
-				sum = bookingDetails.stream().mapToDouble(de -> de.getRewardpoints()).sum();
+				sum = bookingDetails.get(bookingDetails.size()-1).getRewardpoints();
+						//bookingDetails.stream().mapToDouble(de -> de.getRewardpoints()).sum();
 
 				return " your reward points are " + sum;
 

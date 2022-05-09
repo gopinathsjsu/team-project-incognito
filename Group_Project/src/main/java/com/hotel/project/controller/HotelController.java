@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hotel.project.Model.BookingDetails;
 import com.hotel.project.Model.Employee;
 import com.hotel.project.Model.EmployeeAuthenticationRequest;
 import com.hotel.project.Model.Hotel;
@@ -49,6 +50,11 @@ public class HotelController {
 
 	}
 
+	@GetMapping("/getBooking")
+	public List<BookingDetails> getBooking() {
+
+		return hotelservice.getAllBookingDetails();
+	}
 	@PostMapping("/savehotel")
 	public String saveHotel(@Valid @RequestBody Hotel hotel) {
 		hotelrepository.save(hotel);
@@ -77,7 +83,7 @@ public class HotelController {
 		}
 	}
 
-	@GetMapping("/employee/login")
+	@PostMapping("/employee/login")
 	public String employeeLogin(@Valid @RequestBody EmployeeAuthenticationRequest employee) {
 
 		Employee employeeExists = employeeRepository.findUserByEmail(employee.getEmail());

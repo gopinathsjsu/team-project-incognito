@@ -48,16 +48,16 @@ public class BookingDetails implements Serializable {
 	 */
 	@NotBlank(message = "roomType is mandatory")
 	private String roomType;
-	@Size(min=1,max =4)
 	private Integer number_of_adults;
-	@Size(min=0,max =4)
 	private Integer number_of_children;
 	private LocalDate fromDate;
 	private LocalDate toDate;
 	private double rewardpoints;
 	@NotNull(message = "Number of Rooms is mandatory")
 	private int numberOfRooms;
+	private int price;
 	private Amenities amenities;
+	
 
 	public String getReservationID() {
 		return reservationID;
@@ -181,6 +181,20 @@ public class BookingDetails implements Serializable {
 	 */
 	public void setNumberOfRooms(int numberOfRooms) {
 		this.numberOfRooms = numberOfRooms;
+	}
+
+	/**
+	 * @return the price
+	 */
+	public int getPrice() {
+		return price;
+	}
+
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

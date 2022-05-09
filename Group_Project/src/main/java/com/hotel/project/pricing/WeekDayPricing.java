@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class WeekDayPricing implements Pricing {
-	int price = 0;
+	int price ;
 
 	@Override
 	public int getPricing(String roomType) {
