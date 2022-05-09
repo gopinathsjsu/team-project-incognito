@@ -54,6 +54,9 @@
 
 # Architecture Diagram:
 
+![](Architecture_Diagram.png)
+
+
 # Design Decision:
 
 ## Application Level:
