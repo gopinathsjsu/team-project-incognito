@@ -4,11 +4,11 @@
 
 ### 1. What tasks did I work on?
 
-Discuss the Frontend tech Stack and decide on the total no. of pages required for the project.
+Discussed the Frontend tech Stack and decide on the total no. of pages required for the project.
 
 ### 2. What am I planning to work on next?
 
-Need to get acquainted with the Tech stack. Deciding the routing of pages and give a basic information about the looks of the page.
+Need to get acquainted with the Tech stack(React, Spring, MongoDB). Deciding the routing of pages and give a basic information about the looks of the page.
 
 ### 3. What tasks are blocked waiting on another team member?
 
@@ -27,7 +27,7 @@ Should create dummy data in JSON format and need to create a room overview page.
 
 ### 3. What tasks blockers did I have?
 
-No blockers
+None.
 
 
 ## Sprint 3 (Mar 27 - April 9):
@@ -45,7 +45,7 @@ Create an employee page to view all the bookings in the hotel and add CSS to pur
 None.
 
 
-### Sprint 4 (April 10 - April 23):
+## Sprint 4 (April 10 - April 23):
 
 ### 1. What tasks did I work on?
 
@@ -60,7 +60,7 @@ Should create an Architecture Diagram and Component Diagram for the Hotel Bookin
 None.
 
 
-### Sprint 5 (April 24 - May 12):
+## Sprint 5 (April 24 - May 12):
 
 ### 1. What tasks did I work on?
 
