@@ -51,6 +51,20 @@
 
 
 # UI WireFrame
+* Register
+![Register](/Wireframes/Signuppage.png)
+* Login
+![Login](/Wireframes/LoginPage.png)
+* Search Rooms
+![SearchRooms](/Wireframes/SearchHotels.png)
+* Manage Booking
+![ManageBooking](/Wireframes/ManageBooking.png)
+* Home Page
+![HomePage](/Wireframes/HomePage.png)
+* Admin add rooms
+![adminAddRooms](/Wireframes/adminAddRooms.png)
+* Admin manage booking
+![adminManageBooking](/Wireframes/adminManageBookin.png)
 
 # Architecture Diagram:
 
