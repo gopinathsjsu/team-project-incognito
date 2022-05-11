@@ -40,30 +40,40 @@
 
 # Sprint Sheet:
 
-[Sprint Sheet](https://github.com/gopinathsjsu/team-project-incognito/blob/main/Documentation/Scrum_Journal_202.xlsx)
-
-[Burndown Chart](https://docs.google.com/spreadsheets/d/12HDOMYoLC3ENJTQOy0CME6LnWqeNuzJCaCU8Bj9qWb8/edit#gid=1503773425)
-
-[Project Board](https://trello.com/b/PjHUdO26/weeklyprogresscmpe202)
+[Sprint Sheet](https://github.com/gopinathsjsu/team-project-incognito/blob/main/Documentation/Sprint_Sheet.xlsx)
 
 # Project Journal:
 
-
+The entire documentation for the Journals is present on the following link [Documentation](https://github.com/gopinathsjsu/team-project-incognito/tree/main/Documentation)
 
 # UI WireFrame
+
 * Register
+
 ![Register](/Wireframes/Signuppage.png)</br>
+
 * Login
+
 ![Login](/Wireframes/LoginPage.png)</br>
+
 * Search Rooms
+
 ![SearchRooms](/Wireframes/SearchHotels.png)</br>
+
 * Manage Booking
+
 ![ManageBooking](/Wireframes/ManageBooking.png)</br>
+
 * Home Page
+
 ![HomePage](/Wireframes/HomePage.png)</br>
+
 * Admin add rooms
+
 ![adminAddRooms](/Wireframes/adminAddRooms.png)</br>
+
 * Admin manage booking
+
 ![adminManageBooking](/Wireframes/adminManageBookin.png)<br>
 
 # Architecture Diagram:
