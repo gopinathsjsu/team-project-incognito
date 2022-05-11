@@ -63,7 +63,7 @@
 
 ### Admin Features:
 
-    1. Login
+    1. Signin
     2. View all Bookings
     3. Add new Location for each Hotel
 
