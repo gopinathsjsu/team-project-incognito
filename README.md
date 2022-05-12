@@ -46,6 +46,10 @@
 
 The entire documentation for the Journals is present on the following link [Documentation](https://github.com/gopinathsjsu/team-project-incognito/tree/main/Documentation)
 
+# Usecase Diagram:
+
+![](Usecase_Diagram.png)
+
 # UI WireFrame
 
 * Register
@@ -79,7 +83,6 @@ The entire documentation for the Journals is present on the following link [Docu
 # Architecture Diagram:
 
 ![](Architecture_Diagram.png)
-
 
 # Design Decision:
 
