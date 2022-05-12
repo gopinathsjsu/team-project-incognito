@@ -1,4 +1,4 @@
-# Group 12 Project Booking and Management
+# Group 12 - Incognito - Hotel Booking 
 
 # Team Memebers :
 
@@ -37,6 +37,10 @@
  * Courage
  * Simplicity
  * FeedBack
+
+# Project Board
+
+The Project Board is available [here](https://github.com/gopinathsjsu/team-project-incognito/projects/2)
 
 # Sprint Sheet:
 
