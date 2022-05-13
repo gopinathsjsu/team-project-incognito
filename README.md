@@ -45,6 +45,8 @@ The Project Board is available [here](https://github.com/gopinathsjsu/team-proje
 
 # Sprint Sheet:
 
+Below is the link to the sprint sheet along with the Burndown Charts in them.
+
 [Sprint Sheet](https://github.com/gopinathsjsu/team-project-incognito/blob/main/Documentation/Sprint_Sheet.xlsx)
 
 # Project Journal:
