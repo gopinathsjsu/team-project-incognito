@@ -15,6 +15,7 @@
  * Frontend: React JS
  * Backend: SpringBoot
  * Database: MongoDB
+ * docker 
  * REST API: Postman (for testing developed APIs)
  * Cloud: Amazon Web Services (AWS) EC2 Cluster
 
