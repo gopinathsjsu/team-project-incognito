@@ -1,6 +1,6 @@
 # Group 12 - Incognito - Hotel Booking 
 
-# Team Memebers :
+# Team Members :
 
 1) Shreyansh Upadhyay 
 
