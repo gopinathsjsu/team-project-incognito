@@ -91,6 +91,10 @@ The entire documentation for the Journals is present on the following link [Docu
 
 ![](Architecture_Diagram.png)
 
+# Component Diagram:
+
+![](https://github.com/gopinathsjsu/team-project-incognito/blob/main/Component_Diagram.png)
+
 # Design Decision:
 
 ## Application Level:
