@@ -81,10 +81,8 @@ class AuthService {
       password,
       phoneNumber,
     }).then(response => {
-      console.log(response);
-    }).catch(e=> {
-      console.log(e);
-    });
+      return response
+    })
   }
 
   //To_getBooking for Employee
@@ -286,6 +284,7 @@ class AuthService {
 
   //To cancel booking for the user
   getCancelBooking(description){
+    console.log("Here n delete")
     let x = localStorage.getItem('user')
     let email = x;
     email = email.replace(/\"/g,'')

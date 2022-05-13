@@ -17,6 +17,7 @@ const EmployeeSignup = () => {
     const [userName, setuserNameReg] = useState("");
     const [userPassword, setuserPassword] = useState("");
     const [userGender, setGender] = useState("");
+    const [confirmPassword, setconfirmPassword] = useState("");
     const [userPhoneno, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
     const [succesful, setSuccesfull] = useState(false);
@@ -27,6 +28,7 @@ const EmployeeSignup = () => {
     const avatarStyle = { backgroundColor: '#ff7779' }
     const marginTop = { marginTop: 5 }
     
+    var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
     const register = (event) => {
         event.preventDefault();
@@ -38,21 +40,32 @@ const EmployeeSignup = () => {
             window.alert("Please enter valid Email")
             return
         }
+        if(!regularExpression.test(userPassword)){
+            window.alert("Keep special chars in the password and length greater than 6")
+            return
+        }
+        if(confirmPassword != userPassword){
+            window.alert("Password is not matching")
+            return
+        }
         AuthService.employeeregister(userName, email, userPassword, userPhoneno).then(
-            history.push('/employeelogin') 
+            (x) => {
+            history.push('./employeelogin')
+            }
         ).catch((error) => {
             // Error
+            let x = error.response.data
             if (error.response) {
-                window.alert(error.response)
+                window.alert(x)
             } else if (error.request) {
-                window.alert(error.request)
-                console.log(error.request);
+                window.alert(x)
+                console.log(error.response);
             } else {
                 // Something happened in setting up the request that triggered an Error
-                window.alert(error.message)
+                window.alert(x)
                 console.log('Error', error.message);
             }
-            console.log(error.config);
+            console.log(error.response.data);
         });
     }
 
@@ -80,7 +93,7 @@ const EmployeeSignup = () => {
                     </FormControl>
                     <TextField fullWidth label='Phone Number' onChange = {(e)=> {setPhoneNumber(e.target.value)}} placeholder="Enter your phone number" />
                     <TextField fullWidth label='Password' onChange = {(e)=> {setuserPassword(e.target.value)}} placeholder="Enter your password"/>
-                    <TextField fullWidth label='Confirm Password' placeholder="Confirm your password"/>
+                    <TextField fullWidth label='Confirm Password' onChange = {(e)=> {setconfirmPassword(e.target.value)}} placeholder="Confirm your password"/>
                     <FormControlLabel
                         control={<Checkbox name="checkedA" />}
                         label="I accept the terms and conditions."
